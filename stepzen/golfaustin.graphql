@@ -1,0 +1,19 @@
+type Golf { 
+  Name__A:  String 
+  Latitude__B:  Float 
+  Longitude__C:  Float 
+  ImageUrl__D:  String 
+  Description__E:  String 
+  Price__F:  String 
+  TeeTimes__G:  String 
+  DressCode__H:  String 
+  Contact__I:  Float 
+  Address__J:  String 
+  Type__K:  String 
+  Holes__L:  Float 
+  Website__M:  String 
+}
+type Query {
+  golf(q:String! = ""): [Golf]
+    @rest(endpoint:"https://sheets.apis.stepzen.com/14qq0BGagzdnEooccY_bnPqLsmpBOivvpMohthi0Jfzg/0")
+}
