@@ -4,7 +4,7 @@ import {
 	createHttpLink,
 	InMemoryCache,
 } from "@apollo/client";
-import { StatusBar } from "expo-status-bar";
+import { BlurView } from 'expo-blur';
 import React from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import useCachedResources from "./hooks/useCachedResources";
@@ -39,7 +39,16 @@ export default function App() {
 				<SafeAreaProvider>
 					<NavigationContainer>
 						<Stack.Navigator initialRouteName="Login">
-							<Stack.Screen name="Login" component={LoginScreen} />
+							<Stack.Screen 
+								name=" " 
+								component={LoginScreen}
+								options={{
+								headerTransparent: true,
+								headerBackground: () => (
+									<BlurView tint="light" intensity={100} />
+									),
+								}}
+							/>
 							<Stack.Screen name="Home" component={HomeScreen} />
 						</Stack.Navigator>
 					</NavigationContainer>
