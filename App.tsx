@@ -7,12 +7,14 @@ import {
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-
 import useCachedResources from "./hooks/useCachedResources";
 import useColorScheme from "./hooks/useColorScheme";
-import Navigation from "./navigation";
+import { createStackNavigator } from "@react-navigation/stack";
+import { NavigationContainer } from "@react-navigation/native";
+import LoginScreen from './screens/LoginScreen';
+import ProfileScreen from "./screens/ProfileScreen";
 
-const { EXPO_STEPZEN_API_KEY, EXPO_STEPZEN_URI } = process.env;
+const Stack = createStackNavigator();
 
 const client = new ApolloClient({
 	link: createHttpLink({
@@ -35,8 +37,12 @@ export default function App() {
 		return (
 			<ApolloProvider client={client}>
 				<SafeAreaProvider>
-					<Navigation colorScheme={colorScheme} />
-					<StatusBar />
+					<NavigationContainer>
+						<Stack.Navigator initialRouteName="Login">
+							<Stack.Screen name="Login" component={LoginScreen} />
+							<Stack.Screen name="Profile" component={ProfileScreen} />
+						</Stack.Navigator>
+					</NavigationContainer>
 				</SafeAreaProvider>
 			</ApolloProvider>
 		);
