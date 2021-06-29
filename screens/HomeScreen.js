@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-const ProfileScreen = ({ route, navigation }) => {
+const HomeScreen = ({ route, navigation }) => {
 const { user } = route.params;
 console.log("user from google", user);
     return (
@@ -12,6 +12,6 @@ console.log("user from google", user);
     );
 };
 
-export default ProfileScreen;
+export default HomeScreen;
 
 const styles = StyleSheet.create({});
