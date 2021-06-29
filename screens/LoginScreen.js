@@ -73,10 +73,10 @@ const styles = StyleSheet.create({
         resizeMode: 'cover',
         justifyContent: 'center',
 
-      },
-      tinyLogo: {
+    },
+    tinyLogo: {
         width: 50,
         height: 50,
         marginBottom: 20,
-      },
+    },
 });
