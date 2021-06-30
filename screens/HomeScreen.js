@@ -41,6 +41,9 @@ const image = { uri: 'https://images.unsplash.com/photo-1595841055318-943e15fbbe
                                 <Marker
                                     key={index}
                                     coordinate={{ latitude: marker.Latitude__B, longitude: marker.Longitude__C }}
+                                    image={require('./App-golf-game-icon.png')}
+                                    title={`${marker.Name__A}`}
+                                    description={`${marker.Description__E}`}
                                 />
                                     ))}
                         </MapView>
