@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View, ImageBackground, Image } from "react-native";
+import MapView from 'react-native-maps';
 
 const HomeScreen = ({ route, navigation }) => {
 const { user } = route.params;
@@ -12,7 +13,8 @@ console.log("user from google", user);
             <ImageBackground source={image} style={styles.image}>
                     <View style={styles.container}>
                         <Text style={styles.banner}>Welcome {user.name} !</Text>
-                        <Image 
+                        <MapView style={styles.map} />
+                        <Image
                             style={styles.profilePic}
                             source={{
                                 uri: `${user.photoUrl}`,
@@ -52,5 +54,9 @@ const styles = StyleSheet.create({
         height: 100,
         borderRadius: 250,
         marginBottom: 25,
-    }
+    },
+    map: {
+        width: 300,
+        height: 300,
+      },
 });
