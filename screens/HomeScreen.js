@@ -1,12 +1,27 @@
 import React from "react";
 import { StyleSheet, Text, View, ImageBackground, Image } from "react-native";
-import MapView from 'react-native-maps';
+import MapView, { Marker } from 'react-native-maps';
+import { useQuery } from "@apollo/client";
+import { GET_GOLF } from "../queries/getGolf.js";
 
 const HomeScreen = ({ route, navigation }) => {
 const { user } = route.params;
-const image = { uri: 'https://images.unsplash.com/photo-1538648759472-7251f7cb2c2f?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzh8fGdvbGZ8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' };
 
-console.log("user from google", user);
+const {
+    data, 
+    loading, 
+    error
+} = useQuery(GET_GOLF);
+
+const golfCourses = data?.golf;
+// console.log('golfCourses', golfCourses[0].Name__A);
+
+if (loading) return <Text>Almost there...</Text>
+if (error) return <Text>{error?.message}</Text>
+
+const image = { uri: 'https://images.unsplash.com/photo-1595841055318-943e15fbbe80?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTgzfHxnb2xmfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60' };
+
+// console.log("user from google", user);
 
     return (
         <>
@@ -21,7 +36,14 @@ console.log("user from google", user);
                                 latitudeDelta: 0.0922,
                                 longitudeDelta: 0.0421,
                             }}
-                        />
+                        >
+                            {golfCourses.map((marker, index) => (
+                                <Marker
+                                    key={index}
+                                    coordinate={{ latitude: marker.Latitude__B, longitude: marker.Longitude__C }}
+                                />
+                                    ))}
+                        </MapView>
                         <Image
                             style={styles.profilePic}
                             source={{
