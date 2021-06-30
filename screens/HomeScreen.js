@@ -12,8 +12,16 @@ console.log("user from google", user);
         <>
             <ImageBackground source={image} style={styles.image}>
                     <View style={styles.container}>
-                        <Text style={styles.banner}>Welcome {user.name} !</Text>
-                        <MapView style={styles.map} />
+                        <Text style={styles.banner}>Welcome {user.name}</Text>
+                        <MapView
+                            style={styles.map}
+                            initialRegion={{
+                                latitude: 30.2672,
+                                longitude: -97.7431,
+                                latitudeDelta: 0.0922,
+                                longitudeDelta: 0.0421,
+                            }}
+                        />
                         <Image
                             style={styles.profilePic}
                             source={{
@@ -45,7 +53,7 @@ const styles = StyleSheet.create({
     },
     banner: {
         // flex: 1,
-        marginTop: 100,
+        marginTop: 80,
         transform: [{ scale: 2 }],
     },
     profilePic: {
@@ -53,10 +61,10 @@ const styles = StyleSheet.create({
         width: 100,
         height: 100,
         borderRadius: 250,
-        marginBottom: 25,
+        // marginBottom: 25,
     },
     map: {
         width: 300,
-        height: 300,
+        height: 375,
       },
 });
