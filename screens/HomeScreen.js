@@ -1,6 +1,6 @@
 import React from "react";
-import { StyleSheet, Text, View, ImageBackground, Image } from "react-native";
-import MapView, { Marker } from 'react-native-maps';
+import { StyleSheet, Text, View, ImageBackground, Image, TouchableOpacity } from "react-native";
+import MapView, { Marker, Callout } from 'react-native-maps';
 import { useQuery } from "@apollo/client";
 import { GET_GOLF } from "../queries/getGolf.js";
 
@@ -21,7 +21,9 @@ if (error) return <Text>{error?.message}</Text>
 
 const image = { uri: 'https://images.unsplash.com/photo-1595841055318-943e15fbbe80?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTgzfHxnb2xmfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60' };
 
-// console.log("user from google", user);
+function selectCourse(courseName) {
+    console.log("the button has been pressed", courseName);
+};
 
     return (
         <>
@@ -40,11 +42,19 @@ const image = { uri: 'https://images.unsplash.com/photo-1595841055318-943e15fbbe
                             {golfCourses.map((marker, index) => (
                                 <Marker
                                     key={index}
+                                    style={styles.marker}
+                                    // onPress={selectCourse(marker.Name__A)}
                                     coordinate={{ latitude: marker.Latitude__B, longitude: marker.Longitude__C }}
-                                    image={require('./App-golf-game-icon.png')}
-                                    title={`${marker.Name__A}`}
+                                    icon={require('./App-golf-game-icon.png')}
+                                    // title={`${marker.Name__A}`}
                                     description={`${marker.Description__E}`}
-                                />
+                                    >
+                                        <Callout>
+                                            <TouchableOpacity onPress={selectCourse(marker.Name__A)}>
+                                                {/* <Text>{`${marker.Name__A}`}</Text> */}
+                                            </TouchableOpacity>
+                                        </Callout>
+                                    </Marker>
                                     ))}
                         </MapView>
                         <Image
@@ -91,5 +101,10 @@ const styles = StyleSheet.create({
     map: {
         width: 300,
         height: 375,
-      },
+    },
+    marker: {
+        flex: 1,
+        width: 640,
+        height: 640,
+    }
 });
