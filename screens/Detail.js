@@ -12,6 +12,12 @@ function Detail(props) {
         <>
             <ImageBackground source={image} style={styles.image}>
                 <BlurView intensity={75} style={[StyleSheet.absoluteFill, styles.nonBlurredContent]}>
+                    <Image
+                    style={styles.courseImage} 
+                    source={{
+                        uri: `${props.route.params.marker.ImageUrl__D}`,
+                    }}
+                    />
                     <Text style={styles.text}>{props.route.params.marker.Name__A}</Text>
                 </BlurView>
             </ImageBackground>
@@ -35,8 +41,11 @@ const styles = StyleSheet.create({
         color: 'black',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 375,
-        textAlign: 'center',
+        position: 'absolute',
+        top: 150,
+        left: 120,
+        // marginTop: 375,
+        // textAlign: 'center',
         transform: [{ scale: 2 }],       
     },
     image: {
@@ -44,9 +53,18 @@ const styles = StyleSheet.create({
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height,
         resizeMode: 'cover',
-        
         justifyContent: 'center',
     },
+    courseImage: {
+        flex: 0,
+        width: 225,
+        height: 225,
+        position: 'absolute',
+        top: 120,
+        left: 160,
+        borderRadius: 250,
+        resizeMode: 'stretch',
+    }
 });
 
 export default Detail;

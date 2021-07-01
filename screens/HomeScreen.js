@@ -114,8 +114,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         alignSelf: 'center',
-        width: 100, //Dimensions.get('window').width,
-        height: 50, //((Dimensions.get('window').height)/3),
-        textAlign: 'center',
+        width: 100, 
+        height: 50, 
     },
 });
