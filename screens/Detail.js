@@ -1,19 +1,34 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Button, ImageBackground, Image, Text } from "react-native";
-import * as Google from "expo-google-app-auth";
+import { StyleSheet, View, Button, ImageBackground, Image, Text, Dimensions } from "react-native";
+import { BlurView } from 'expo-blur';
 
 function Detail(props) {
+
     console.log('props', props.route.params.marker.Name__A);
+
+    const image = { uri: "https://images.unsplash.com/photo-1592919505780-303950717480?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Z29sZnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60" };
+
     return (
-        <View style={styles.container}>
-            <Text style={styles.text}>{props.route.params.marker.Name__A}</Text>
-        </View>
+        <>
+            <ImageBackground source={image} style={styles.image}>
+                <BlurView intensity={75} style={[StyleSheet.absoluteFill, styles.nonBlurredContent]}>
+                    <Text style={styles.text}>{props.route.params.marker.Name__A}</Text>
+                </BlurView>
+            </ImageBackground>
+        </>
     )
 };
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        alignSelf: 'center',
+        width: 350,
+        // height: 400,
+        backgroundColor: 'rgba(255,255,255,0.3)',
+        padding: 50,
     },
     text: {
         flex: 1,
@@ -22,7 +37,15 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: 375,
         textAlign: 'center',
-        transform: [{ scale: 2 }],
+        transform: [{ scale: 2 }],       
+    },
+    image: {
+        flex: 0,
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height,
+        resizeMode: 'cover',
+        
+        justifyContent: 'center',
     },
 });
 

@@ -111,7 +111,11 @@ const styles = StyleSheet.create({
 
     tooltip: {
         flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        alignSelf: 'center',
         width: 100, //Dimensions.get('window').width,
-        height: 100, //((Dimensions.get('window').height)/3),
+        height: 50, //((Dimensions.get('window').height)/3),
+        textAlign: 'center',
     },
 });
