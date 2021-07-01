@@ -19,6 +19,9 @@ function Detail(props) {
                     }}
                     />
                     <Text style={styles.text}>{props.route.params.marker.Name__A}</Text>
+                    <View style={styles.description}>
+                        <Text>{props.route.params.marker.Description__E}</Text>
+                    </View>
                 </BlurView>
             </ImageBackground>
         </>
@@ -38,15 +41,17 @@ const styles = StyleSheet.create({
     },
     text: {
         flex: 1,
-        color: 'black',
+        color: 'white',
         justifyContent: 'center',
         alignItems: 'center',
         position: 'absolute',
         top: 150,
-        left: 120,
-        // marginTop: 375,
-        // textAlign: 'center',
-        transform: [{ scale: 2 }],       
+        left: 120,     
+        backgroundColor: 'rgba(155,155,125,0.75)',
+        transform: [{ scale: 2 }],
+        textShadowColor: 'white', 
+        textShadowOffset: {width: 1, height: 1},
+        textShadowRadius: 2,
     },
     image: {
         flex: 0,
@@ -60,11 +65,21 @@ const styles = StyleSheet.create({
         width: 225,
         height: 225,
         position: 'absolute',
-        top: 120,
-        left: 160,
+        top: 155,
+        left: 185,
         borderRadius: 250,
         resizeMode: 'stretch',
-    }
+    },
+    description: {
+        flex: 1,
+        width: 215,
+        position: 'absolute',
+        top: 170,
+        margin: 10,
+        backgroundColor: 'rgba(255,255,255,0.55)',
+        borderRadius: 25,
+        padding: 15,
+    },
 });
 
 export default Detail;

@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, Button, Text, View, ImageBackground, Image, TouchableOpacity, Dimensions } from "react-native";
-import MapView, { Marker, Callout } from 'react-native-maps';
+import MapView, { Marker, Callout, PROVIDER_GOOGLE } from 'react-native-maps';
 import { useQuery } from "@apollo/client";
 import { GET_GOLF } from "../queries/getGolf.js";
 
@@ -33,6 +33,7 @@ function selectCourse(marker) {
                         <Text style={styles.banner}>Welcome {user.name}</Text>
                         <MapView
                             style={styles.map}
+                            provider={PROVIDER_GOOGLE}
                             initialRegion={{
                                 latitude: 30.2672,
                                 longitude: -97.7631,
