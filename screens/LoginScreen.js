@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { StyleSheet, View, Button, ImageBackground, Image } from "react-native";
 import * as Google from "expo-google-app-auth";
+import { isWithinInterval } from "date-fns";
 
 
 const LoginScreen = ({ navigation }) => {
@@ -39,6 +40,10 @@ const LoginScreen = ({ navigation }) => {
         console.log("you have successfully logged out");
     };
 
+    const goBack = () => {
+        navigation.navigate("Home", { user });
+    }
+
 const image = { uri: 'https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80' };
 
     return (
@@ -51,8 +56,9 @@ const image = { uri: 'https://images.unsplash.com/photo-1587174486073-ae5e5cff23
                             uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/120px-Google_%22G%22_Logo.svg.png',
                         }}
                     />
-                    {!user && <Button  title="Login with Google" onPress={signInAsync} />}
-                    {user && <Button  title="Log-Out" onPress={signOutAsync} />}
+                    {!user && <Button  style={styles.button} title="Login with Google" onPress={signInAsync} />}
+                    {user && <Button style={styles.button}  title="Log-Out" onPress={signOutAsync} />}
+                    {user && <Button style={styles.button}  title="Back" onPress={goBack} />}
                 </View>
             </ImageBackground>
         </>
@@ -67,6 +73,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         padding: 60,
         backgroundColor: 'rgba(100,200,100,0.2)',
+    },
+    button: {
+        backgroundColor: 'white',
     },
     image: {
         flex: 1,

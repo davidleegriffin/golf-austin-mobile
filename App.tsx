@@ -6,6 +6,8 @@ import {
 } from "@apollo/client";
 import { BlurView } from 'expo-blur';
 import React from "react";
+
+import { StyleSheet, View, Button, ImageBackground, Image } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import useCachedResources from "./hooks/useCachedResources";
 import useColorScheme from "./hooks/useColorScheme";
@@ -13,6 +15,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import LoginScreen from './screens/LoginScreen';
 import HomeScreen from "./screens/HomeScreen";
+import navigation from "./navigation";
 
 const Stack = createStackNavigator();
 
@@ -43,20 +46,20 @@ export default function App() {
 								name=" " 
 								component={LoginScreen}
 								options={{
-								headerTransparent: true,
-								headerBackground: () => (
-									<BlurView tint="light" intensity={100} />
-									),
+									headerTransparent: true,
+									headerBackground: () => (
+										<BlurView tint="light" intensity={100} />
+										),
 								}}
 							/>
 							<Stack.Screen 
 								name="Home" 
 								component={HomeScreen} 
 								options={{
+									title: "Golf-Austin",
 									headerTransparent: true,
-									// headerBackground: () => (
-									// 	<BlurView tint="light" intensity={100} />
-									// 	),
+									headerTitleAlign: "center",
+
 									}}
 							/>
 						</Stack.Navigator>

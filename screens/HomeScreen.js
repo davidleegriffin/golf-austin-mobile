@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, ImageBackground, Image, TouchableOpacity } from "react-native";
+import { StyleSheet, Button, Text, View, ImageBackground, Image, TouchableOpacity, Dimensions } from "react-native";
 import MapView, { Marker, Callout } from 'react-native-maps';
 import { useQuery } from "@apollo/client";
 import { GET_GOLF } from "../queries/getGolf.js";
@@ -21,8 +21,8 @@ if (error) return <Text>{error?.message}</Text>
 
 const image = { uri: 'https://images.unsplash.com/photo-1595841055318-943e15fbbe80?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTgzfHxnb2xmfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60' };
 
-function selectCourse(courseName) {
-    console.log("the button has been pressed", courseName);
+function selectCourse(marker) {
+    console.log("the button has been pressed", marker);
 };
 
     return (
@@ -35,27 +35,24 @@ function selectCourse(courseName) {
                             initialRegion={{
                                 latitude: 30.2672,
                                 longitude: -97.7431,
-                                latitudeDelta: 0.0922,
-                                longitudeDelta: 0.0421,
+                                latitudeDelta: 0.5922,
+                                longitudeDelta: 0.5421,
                             }}
-                        >
+                            >
                             {golfCourses.map((marker, index) => (
                                 <Marker
                                     key={index}
                                     style={styles.marker}
-                                    // onPress={selectCourse(marker.Name__A)}
                                     coordinate={{ latitude: marker.Latitude__B, longitude: marker.Longitude__C }}
-                                    icon={require('./App-golf-game-icon.png')}
-                                    // title={`${marker.Name__A}`}
+                                    image={require('./App-golf-game-icon.png')}
+                                    title={`${marker.Name__A}`}
                                     description={`${marker.Description__E}`}
-                                    >
-                                        <Callout>
-                                            <TouchableOpacity onPress={selectCourse(marker.Name__A)}>
-                                                {/* <Text>{`${marker.Name__A}`}</Text> */}
-                                            </TouchableOpacity>
-                                        </Callout>
-                                    </Marker>
-                                    ))}
+                                >
+                                    <Callout style={styles.tooltip} onPress={() => selectCourse(marker)}>    
+                                        <Text style={styles.toolText}>{`${marker.Name__A}`}</Text>
+                                    </Callout>
+                                </Marker>
+                            ))}
                         </MapView>
                         <Image
                             style={styles.profilePic}
@@ -88,7 +85,7 @@ const styles = StyleSheet.create({
     },
     banner: {
         // flex: 1,
-        marginTop: 80,
+        marginTop: 100,
         transform: [{ scale: 2 }],
     },
     profilePic: {
@@ -96,15 +93,24 @@ const styles = StyleSheet.create({
         width: 100,
         height: 100,
         borderRadius: 250,
-        // marginBottom: 25,
+        marginBottom: 25,
     },
     map: {
         width: 300,
         height: 375,
     },
+    toolText: {
+
+    },
     marker: {
+        flex: 0,
+        width: 100, //Dimensions.get('window').width,
+        height: 100, //Dimensions.get('window').height,
+    },
+
+    tooltip: {
         flex: 1,
-        width: 640,
-        height: 640,
-    }
+        width: 100, //Dimensions.get('window').width,
+        height: 100, //((Dimensions.get('window').height)/3),
+    },
 });
