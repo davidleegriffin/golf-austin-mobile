@@ -23,6 +23,7 @@ const image = { uri: 'https://images.unsplash.com/photo-1595841055318-943e15fbbe
 
 function selectCourse(marker) {
     console.log("the button has been pressed", marker);
+    navigation.navigate("Detail", { marker });
 };
 
     return (
@@ -34,9 +35,9 @@ function selectCourse(marker) {
                             style={styles.map}
                             initialRegion={{
                                 latitude: 30.2672,
-                                longitude: -97.7431,
-                                latitudeDelta: 0.5922,
-                                longitudeDelta: 0.5421,
+                                longitude: -97.7631,
+                                latitudeDelta: 0.4922,
+                                longitudeDelta: 0.3121,
                             }}
                             >
                             {golfCourses.map((marker, index) => (

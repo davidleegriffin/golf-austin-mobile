@@ -65,8 +65,6 @@ const image = { uri: 'https://images.unsplash.com/photo-1587174486073-ae5e5cff23
     );
 };
 
-export default LoginScreen;
-
 const styles = StyleSheet.create({
     buttonContainer: {
         flex: 1,
@@ -81,11 +79,14 @@ const styles = StyleSheet.create({
         flex: 1,
         resizeMode: 'cover',
         justifyContent: 'center',
-
+        
     },
     tinyLogo: {
         width: 50,
         height: 50,
         marginBottom: 20,
+        marginTop: 50,
     },
 });
+
+export default LoginScreen;
