@@ -35,9 +35,9 @@ function selectCourse(marker) {
                             style={styles.map}
                             provider={PROVIDER_GOOGLE}
                             initialRegion={{
-                                latitude: 30.2672,
-                                longitude: -97.7631,
-                                latitudeDelta: 0.4922,
+                                latitude: 30.2972,
+                                longitude: -97.8031,
+                                latitudeDelta: 0.423922,
                                 longitudeDelta: 0.3121,
                             }}
                             >
@@ -98,8 +98,8 @@ const styles = StyleSheet.create({
         marginBottom: 25,
     },
     map: {
-        width: 300,
-        height: 375,
+        width: 380,
+        height: 500,
     },
     toolText: {
 

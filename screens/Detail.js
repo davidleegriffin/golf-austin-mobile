@@ -19,7 +19,7 @@ function Detail(props) {
                     />
                     <Text style={styles.nameText}>{props.route.params.marker.Name__A}</Text>
                     <View style={styles.description}>
-                        <Text>{props.route.params.marker.Description__E}</Text>
+                        <Text style={styles.descriptionText}>{props.route.params.marker.Description__E}</Text>
                     </View>
                     <View style={styles.price}>
                         <Text style={styles.priceText}>{props.route.params.marker.Price__F}</Text>
@@ -83,12 +83,19 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 170,
         margin: 5,
-        backgroundColor: 'rgba(255,255,255,0.75)',
+        backgroundColor: 'rgba(255,255,255,1)',
         borderRadius: 25,
         padding: 15,
         borderRightWidth: 3,
         borderBottomWidth: 3,
         
+    },
+    descriptionText: {
+        flex: 1,
+        color: 'black',
+        textShadowColor: 'rgba(0,0,0,0.5)',
+        textShadowOffset: {width: 0.75, height: 0.75},
+        textShadowRadius: 1.5,
     },
     price: {
         flex: 1,
@@ -96,7 +103,7 @@ const styles = StyleSheet.create({
         top: 375,
         right: 1,
         width: 175,
-        backgroundColor: 'rgba(155,155,125,0.85)',
+        backgroundColor: 'rgba(155,155,125,0.75)',
         borderRadius: 15,
         padding: 5,
         borderWidth: 1,
@@ -106,8 +113,8 @@ const styles = StyleSheet.create({
         flex: 1,
         fontSize: 20,
         textShadowColor: 'white',
-        textShadowOffset: {width: 1, height: 1},
-        textShadowRadius: 2,
+        textShadowOffset: {width: 0.75, height: 0.75},
+        textShadowRadius: 1.5,
         fontWeight: 'bold',
     },
     dress: {
@@ -119,15 +126,15 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(45,105,25,0.5)',
         borderRadius: 20,
         padding: 5,
-        borderWidth: 1,
+        borderWidth: 0.5,
     },
     dressText: {
         flex: 1,
         color: 'white',
         alignSelf: 'center',
         textShadowColor: 'black',
-        textShadowOffset: {width: 1, height: 1},
-        textShadowRadius: 1,
+        textShadowOffset: {width: 2, height: 2},
+        textShadowRadius: 2,
         padding: 2,
     },
 });
