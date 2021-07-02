@@ -58,7 +58,7 @@ const image = { uri: 'https://images.unsplash.com/photo-1587174486073-ae5e5cff23
                     />
                     {!user && <Button  style={styles.button} title="Login with Google" onPress={signInAsync} />}
                     {user && <Button style={styles.button}  title="Log-Out" onPress={signOutAsync} />}
-                    {user && <Button style={styles.button}  title="Back" onPress={goBack} />}
+                    {user && <Button style={styles.button}  title="Back to Map" onPress={goBack} />}
                 </View>
             </ImageBackground>
         </>
