@@ -13,7 +13,7 @@ function Detail(props) {
             <ImageBackground source={image} style={styles.image}>
                 <BlurView intensity={75} style={[StyleSheet.absoluteFill, styles.nonBlurredContent]}>
                     <Image
-                    style={styles.courseImage} 
+                    style={styles.courseImage}
                     source={{
                         uri: `${props.route.params.marker.ImageUrl__D}`,
                     }}
@@ -21,6 +21,9 @@ function Detail(props) {
                     <Text style={styles.text}>{props.route.params.marker.Name__A}</Text>
                     <View style={styles.description}>
                         <Text>{props.route.params.marker.Description__E}</Text>
+                    </View>
+                    <View style={styles.price}>
+                        <Text style={styles.priceText}>{props.route.params.marker.Price__F}</Text>
                     </View>
                 </BlurView>
             </ImageBackground>
@@ -46,11 +49,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         position: 'absolute',
         top: 150,
-        left: 120,     
+        left: 120,
         backgroundColor: 'rgba(155,155,125,0.75)',
-        transform: [{ scale: 2 }],
-        textShadowColor: 'white', 
-        textShadowOffset: {width: 1, height: 1},
+        transform: [{ scale: 2.5 }],
+        textShadowColor: 'black',
+        textShadowOffset: {width: 0, height: 0},
         textShadowRadius: 2,
     },
     image: {
@@ -79,6 +82,24 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(255,255,255,0.55)',
         borderRadius: 25,
         padding: 15,
+    },
+    price: {
+        flex: 1,
+        position: 'absolute',
+        top: 375,
+        right: 1,
+        width: 155,
+        backgroundColor: 'rgba(155,155,125,0.85)',
+        borderRadius: 25,
+        padding: 5,
+    },
+    priceText: {
+        flex: 1,
+        fontSize: 22,
+        textShadowColor: 'white',
+        textShadowOffset: {width: 0, height: 0},
+        textShadowRadius: 8,
+
     },
 });
 
