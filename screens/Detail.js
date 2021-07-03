@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Button, ImageBackground, Image, Text, Dimensions } from "react-native";
+import { 
+    StyleSheet, 
+    View, 
+    TouchableOpacity, 
+    ImageBackground, 
+    Image, 
+    Text, 
+    Dimensions 
+    } from "react-native";
 import { BlurView } from 'expo-blur';
 
 function Detail(props) {
@@ -26,6 +34,11 @@ function Detail(props) {
                     </View>
                     <View style={styles.dress}>
                         <Text style={styles.dressText}>{dress}</Text>
+                    </View>
+                    <View style={styles.teeTimes}>
+                        <TouchableOpacity title="Tee Times" >
+                            <Text>TEE TIMES</Text>
+                        </TouchableOpacity>
                     </View>
                 </BlurView>
             </ImageBackground>
@@ -136,6 +149,21 @@ const styles = StyleSheet.create({
         textShadowOffset: {width: 2, height: 2},
         textShadowRadius: 2,
         padding: 2,
+    },
+    teeTimes: {
+        flex: 0,
+        width: 100,
+        height: 25,
+        position: 'absolute',
+        top: 675,
+        left: 50,
+        backgroundColor: 'beige',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 10,
+        borderWidth: 1,
+        borderRightWidth: 3,
+        borderBottomWidth: 3,
     },
 });
 

@@ -8,7 +8,7 @@ import { GET_GOLF } from "../queries/getGolf";
 export default function TabOneScreen() {
 	const { data, error, loading } = useQuery(GET_GOLF, {});
 
-	console.log("data", data);
+	// console.log("data", data);
 	return (
 		<View style={styles.container}>
 			<Text style={styles.title}>Tab One Hot</Text>

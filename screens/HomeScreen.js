@@ -1,5 +1,13 @@
 import React, {useState} from "react";
-import { StyleSheet, Button, Text, View, ImageBackground, Image, TouchableOpacity, Dimensions, ScrollView } from "react-native";
+import { 
+    StyleSheet,
+    Text, 
+    View, 
+    ImageBackground, 
+    Image, 
+    TouchableOpacity,
+    TouchableHighlight
+    } from "react-native";
 import MapView, { Marker, Callout, PROVIDER_GOOGLE } from 'react-native-maps';
 import { useQuery } from "@apollo/client";
 import { GET_GOLF } from "../queries/getGolf.js";
@@ -23,7 +31,7 @@ if (error) return <Text>{error?.message}</Text>
 const backgroundImage = { uri: 'https://images.unsplash.com/photo-1595841055318-943e15fbbe80?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTgzfHxnb2xmfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60' };
 
 function selectCourse(marker) {
-    console.log("the button has been pressed", marker);
+    // console.log("the button has been pressed", marker);
     navigation.navigate("Detail", { marker });
 };
 
@@ -189,9 +197,9 @@ const styles = StyleSheet.create({
     },
     map: {
         position: 'absolute',
-        top: 275,
+        top: 295,
         width: 380,
-        height: 380,
+        height: 480,
         borderRadius: 25,
         borderWidth: 0.75,
     },
@@ -224,7 +232,7 @@ const styles = StyleSheet.create({
         width: 400,
         height: 50,
         position: 'absolute',
-        top: 210,
+        top: 225,
         // left: 5,
     },
     buttons: {
