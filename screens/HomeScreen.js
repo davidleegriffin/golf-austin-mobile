@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { StyleSheet, Button, Text, View, ImageBackground, Image, TouchableOpacity, Dimensions } from "react-native";
+import { StyleSheet, Button, Text, View, ImageBackground, Image, TouchableOpacity, Dimensions, ScrollView } from "react-native";
 import MapView, { Marker, Callout, PROVIDER_GOOGLE } from 'react-native-maps';
 import { useQuery } from "@apollo/client";
 import { GET_GOLF } from "../queries/getGolf.js";
@@ -9,8 +9,8 @@ const { user } = route.params;
 const [courses, setCourses] = useState();
 
 const {
-    data, 
-    loading, 
+    data,
+    loading,
     error
 } = useQuery(GET_GOLF);
 
@@ -91,6 +91,44 @@ if (courses === undefined) {
                             }}
                         />
                         <Text style={styles.banner}>Welcome {user.name}</Text>
+                        <View style={styles.courseButtons}>
+                            <TouchableOpacity style={styles.buttons} onPress={allCourses} title="All">
+                                <Text style={styles.buttonsText}>All</Text>
+                                <Image
+                                style={styles.golfBall}
+                                source={{
+                                    uri: "https://media.istockphoto.com/vectors/vector-realistic-3d-white-classic-golf-ball-icon-closeup-isolated-on-vector-id1013903842?b=1&k=6&m=1013903842&s=612x612&w=0&h=VUOOTH_DvWezhnDrUk--SadDmeLlrtay-YlQfWBT5U4=",
+                                }}
+                                />
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.buttons} onPress={getPublicCourses} title="Public">
+                                <Text style={styles.buttonsText}>Public</Text>
+                                <Image
+                                    style={styles.golfBall}
+                                    source={{
+                                        uri: "https://media.istockphoto.com/vectors/vector-realistic-3d-white-classic-golf-ball-icon-closeup-isolated-on-vector-id1013903842?b=1&k=6&m=1013903842&s=612x612&w=0&h=VUOOTH_DvWezhnDrUk--SadDmeLlrtay-YlQfWBT5U4=",
+                                    }}
+                                />
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.buttons} onPress={getPrivateCourses} title="Private">
+                                <Text style={styles.buttonsText}>Private</Text>
+                                <Image
+                                style={styles.golfBall}
+                                source={{
+                                    uri: "https://media.istockphoto.com/vectors/vector-realistic-3d-white-classic-golf-ball-icon-closeup-isolated-on-vector-id1013903842?b=1&k=6&m=1013903842&s=612x612&w=0&h=VUOOTH_DvWezhnDrUk--SadDmeLlrtay-YlQfWBT5U4=",
+                                }}
+                                />
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.buttons} onPress={nines} title="9-holes">
+                                <Text style={styles.buttonsText}>9-Hole</Text>
+                                <Image
+                                style={styles.golfBall}
+                                source={{
+                                    uri: "https://media.istockphoto.com/vectors/vector-realistic-3d-white-classic-golf-ball-icon-closeup-isolated-on-vector-id1013903842?b=1&k=6&m=1013903842&s=612x612&w=0&h=VUOOTH_DvWezhnDrUk--SadDmeLlrtay-YlQfWBT5U4=",
+                                }}
+                                />
+                            </TouchableOpacity>
+                        </View>
                         <MapView
                             style={styles.map}
                             // provider={PROVIDER_GOOGLE}
@@ -110,33 +148,13 @@ if (courses === undefined) {
                                 title={`${marker.Name__A}`}
                                 description={`${marker.Description__E}`}
                                 >
-                                    <Callout style={styles.tooltip} onPress={() => selectCourse(marker)}>    
+                                    <Callout style={styles.tooltip} onPress={() => selectCourse(marker)}>
                                         <Text style={styles.toolText}>{`${marker.Name__A}`}</Text>
                                     </Callout>
                                 </Marker>
                             ))}
                         </MapView>
                     </View>
-                    <View style={styles.courseButtons}>
-                            <TouchableOpacity style={styles.buttons} onPress={getPublicCourses} title="Public">
-                            <Image
-                            style={styles.golfBall}
-                            source={{
-                                uri: "https://media.istockphoto.com/vectors/vector-realistic-3d-white-classic-golf-ball-icon-closeup-isolated-on-vector-id1013903842?b=1&k=6&m=1013903842&s=612x612&w=0&h=VUOOTH_DvWezhnDrUk--SadDmeLlrtay-YlQfWBT5U4=",
-                            }}
-                            />
-                            <Text style={styles.buttonsText}>Public</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.buttons} onPress={getPrivateCourses} title="Private">
-                                <Text style={styles.buttonsText}>Private</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.buttons} onPress={nines} title="9-holes">
-                                <Text style={styles.buttonsText}>9-Hole</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.buttons} onPress={allCourses} title="All">
-                                <Text style={styles.buttonsText}>All</Text>
-                            </TouchableOpacity>
-                        </View>
             </ImageBackground>
         </>
     );
@@ -151,6 +169,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         textAlign: 'center',
+        height: '100%',
     },
     image: {
         flex: 1,
@@ -159,9 +178,9 @@ const styles = StyleSheet.create({
     },
     profilePic: {
         flex: 0,
-        width: 100,
-        height: 100,
-        marginTop: 100,
+        width: 90,
+        height: 90,
+        marginTop: 80,
         borderRadius: 250,
     },
     banner: {
@@ -172,7 +191,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 275,
         width: 380,
-        height: 450,
+        height: 380,
         borderRadius: 25,
         borderWidth: 0.75,
     },
@@ -186,8 +205,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         alignSelf: 'center',
-        width: 225, 
-        height: 50, 
+        width: 225,
+        height: 50,
         backgroundColor: 'rgba(0,55,0,0.5)',
         margin: -100,
         borderRadius: 15,
@@ -205,8 +224,8 @@ const styles = StyleSheet.create({
         width: 400,
         height: 50,
         position: 'absolute',
-        top: 775,
-        left: 5,
+        top: 210,
+        // left: 5,
     },
     buttons: {
         flex: 0,
@@ -220,12 +239,13 @@ const styles = StyleSheet.create({
     },
     buttonsText: {
         fontWeight: 'bold',
+        position: 'absolute',
     },
     golfBall: {
         flex: 0,
-        width: 90,
-        height: 90,
+        width: 100,
+        height: 100,
         borderRadius: 250,
-        marginTop: 17,
+        zIndex: -100,
     },
 });
