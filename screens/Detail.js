@@ -28,6 +28,11 @@ function Detail(props) {
                     <Text style={styles.nameText}>{props.route.params.marker.Name__A}</Text>
                     <View style={styles.description}>
                         <Text style={styles.descriptionText}>{props.route.params.marker.Description__E}</Text>
+                        <View style={styles.teeTimes}>
+                            <TouchableOpacity title="Tee Times" >
+                                <Text style={styles.teeText}>Tee Times</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
                     <View style={styles.price}>
                         <Text style={styles.priceText}>{props.route.params.marker.Price__F}</Text>
@@ -35,11 +40,11 @@ function Detail(props) {
                     <View style={styles.dress}>
                         <Text style={styles.dressText}>{dress}</Text>
                     </View>
-                    <View style={styles.teeTimes}>
+                    {/* <View style={styles.teeTimes}>
                         <TouchableOpacity title="Tee Times" >
-                            <Text>TEE TIMES</Text>
+                            <Text style={styles.teeText}>Tee Times</Text>
                         </TouchableOpacity>
-                    </View>
+                    </View> */}
                 </BlurView>
             </ImageBackground>
         </>
@@ -152,18 +157,27 @@ const styles = StyleSheet.create({
     },
     teeTimes: {
         flex: 0,
-        width: 100,
-        height: 25,
-        position: 'absolute',
-        top: 675,
-        left: 50,
+        width: 150,
+        height: 35,
+        // position: 'absolute',
+        // top: 655,
+        // left: 33,
+        marginTop: 20,
+        marginLeft: 10,
         backgroundColor: 'beige',
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 10,
-        borderWidth: 1,
+        borderWidth: 0.5,
         borderRightWidth: 3,
+        borderRightColor: 'rgba(0,0,0,0.25)',
         borderBottomWidth: 3,
+        borderBottomColor: 'rgba(0,0,0,0.25)',
+
+    },
+    teeText: {
+        flex: 1,
+        fontSize: 25,
     },
 });
 
