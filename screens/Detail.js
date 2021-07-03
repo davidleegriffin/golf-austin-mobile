@@ -6,7 +6,8 @@ import {
     ImageBackground, 
     Image, 
     Text, 
-    Dimensions 
+    Dimensions,
+    Linking 
     } from "react-native";
 import { BlurView } from 'expo-blur';
 
@@ -14,6 +15,10 @@ function Detail(props) {
 
     const image = { uri: "https://images.unsplash.com/photo-1592919505780-303950717480?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Z29sZnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60" };
     const dress = (props.route.params.marker.DressCode__H) ? props.route.params.marker.DressCode__H : "No Dress Code Posted";
+
+    function teeTimes() {
+        console.log('tee times', props.route.params.marker);
+    };
 
     return (
         <>
@@ -29,8 +34,8 @@ function Detail(props) {
                     <View style={styles.description}>
                         <Text style={styles.descriptionText}>{props.route.params.marker.Description__E}</Text>
                         <View style={styles.teeTimes}>
-                            <TouchableOpacity title="Tee Times" >
-                                <Text style={styles.teeText}>Tee Times</Text>
+                            <TouchableOpacity>
+                                <Text style={styles.teeText} onPress={teeTimes}>Tee Times</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -40,11 +45,22 @@ function Detail(props) {
                     <View style={styles.dress}>
                         <Text style={styles.dressText}>{dress}</Text>
                     </View>
-                    {/* <View style={styles.teeTimes}>
-                        <TouchableOpacity title="Tee Times" >
-                            <Text style={styles.teeText}>Tee Times</Text>
+                    <View style={styles.phone}>
+                        <TouchableOpacity>
+                            <Image  
+                                style={styles.phoneImage} 
+                                source={{
+                                    uri: "https://freesvg.org/img/molumen_phone_icon.png",
+                                }}
+                            /> 
+                            <Text 
+                                style={styles.phoneText}
+                                onPress={()=>{Linking.openURL(`tel: ${props.route.params.marker.Contact__I}`);}}
+                            >
+                                {props.route.params.marker.Contact__I}
+                            </Text>
                         </TouchableOpacity>
-                    </View> */}
+                    </View>
                 </BlurView>
             </ImageBackground>
         </>
@@ -178,6 +194,29 @@ const styles = StyleSheet.create({
     teeText: {
         flex: 1,
         fontSize: 25,
+    },
+    phone: {
+        flex:0,
+        width: '100%',
+        // height: 50,
+        position: 'absolute',
+        bottom: 85,
+        // left: 143,
+        backgroundColor: 'white',
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingVertical: 5,
+    },
+    phoneImage: {
+        flex: 0,
+        height: 50,
+        width: 50,
+        alignSelf: 'center',
+    },
+    phoneText: {
+        flex: 1,
+        fontSize: 23,
+        paddingHorizontal: 20,
     },
 });
 

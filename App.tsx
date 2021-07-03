@@ -6,7 +6,7 @@ import {
 } from "@apollo/client";
 import { BlurView } from 'expo-blur';
 import React from "react";
-import { StyleSheet, View, Button, ImageBackground, Image } from "react-native";
+// import { StyleSheet, View, Button, ImageBackground, Image } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import useCachedResources from "./hooks/useCachedResources";
 import useColorScheme from "./hooks/useColorScheme";
