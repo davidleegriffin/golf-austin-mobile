@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { 
     StyleSheet, 
     View, 
@@ -10,14 +10,35 @@ import {
     Linking 
     } from "react-native";
 import { BlurView } from 'expo-blur';
+import * as Location from 'expo-location';
+import { openURL } from "expo-linking";
 
 function Detail(props) {
 
     const image = { uri: "https://images.unsplash.com/photo-1592919505780-303950717480?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Z29sZnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60" };
     const dress = (props.route.params.marker.DressCode__H) ? props.route.params.marker.DressCode__H : "No Dress Code Posted";
+    const getTeeTimes = (props.route.params.marker.TeeTimes__G) ? props.route.params.marker.TeeTimes__G : props.route.params.marker.Website__M;
+    const [location, setLocation] = useState(null);
+    const [errorMsg, setErrorMsg] = useState(null);
+  
+    useEffect(() => {
+      (async () => {
+        let { status } = await Location.requestForegroundPermissionsAsync();
+        if (status !== 'granted') {
+          setErrorMsg('Permission to access location was denied');
+          return;
+        }
+  
+        let location = await Location.getCurrentPositionAsync({});
+        setLocation(location);
+      })();
+    }, []);
+
+    console.log('location:', 'lat:', location?.coords.latitude, 'lng:', location?.coords.longitude);
 
     function teeTimes() {
-        console.log('tee times', props.route.params.marker);
+        console.log('tee times', getTeeTimes);
+        openURL(`${getTeeTimes}`);
     };
 
     return (
