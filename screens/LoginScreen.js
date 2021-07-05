@@ -136,8 +136,8 @@ const styles = StyleSheet.create({
     },
     emailIcon: {
         flex: 0,
-        width: 50,
-        height: 50,
+        width: 25,
+        height: 25,
         alignSelf: 'center',
     },
     feedbackText: {

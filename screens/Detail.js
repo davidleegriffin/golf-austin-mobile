@@ -50,70 +50,79 @@ function Detail(props) {
     };
 
     return (
-        <>
-            <ScrollView style={styles.scrollView}>    
-                <ImageBackground source={image} style={styles.backgroundImage}>
-                    <BlurView intensity={50} style={[StyleSheet.absoluteFill, styles.nonBlurredContent]}>
-                        <Image
-                        style={styles.courseImage}
-                        source={{
-                            uri: `${props.route.params.marker.ImageUrl__D}`,
-                        }}
-                        />
-                        <Text style={styles.nameText}>{props.route.params.marker.Name__A}</Text>
-                        <View style={styles.description}>
-                            <Text style={styles.descriptionText}>{props.route.params.marker.Description__E}</Text>
-                            <View style={styles.teeTimes}>
-                                <TouchableOpacity>
-                                    <Text style={styles.teeText} onPress={teeTimes}>Tee Times</Text>
-                                </TouchableOpacity>
-                            </View>
-                        </View>
-                        <View style={styles.price}>
-                            <Text style={styles.priceText}>{props.route.params.marker.Price__F}</Text>
-                        </View>
-                        <View style={styles.dress}>
-                            <Text style={styles.dressText}>{dress}</Text>
-                        </View>
-                        <View style={styles.phone}>
+        <>  
+            <ImageBackground source={image} style={styles.backgroundImage}>
+                <BlurView intensity={50} style={[StyleSheet.absoluteFill, styles.nonBlurredContent]}>
+                    <Image
+                    style={styles.courseImage}
+                    source={{
+                        uri: `${props.route.params.marker.ImageUrl__D}`,
+                    }}
+                    />
+                    <Text style={styles.nameText}>{props.route.params.marker.Name__A}</Text>
+                    <View style={styles.description}>
+                        <Text style={styles.descriptionText}>{props.route.params.marker.Description__E}</Text>
+                        <View style={styles.teeTimes}>
                             <TouchableOpacity>
+                                <Text style={styles.teeText} onPress={teeTimes}>Tee Times</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                    <View style={styles.price}>
+                        <Text style={styles.priceText}>{props.route.params.marker.Price__F}</Text>
+                    </View>
+                    <View style={styles.dress}>
+                        <Text style={styles.dressText}>{dress}</Text>
+                    </View>
+                    <View style={styles.address}>
+                        <TouchableOpacity>
+                        <Image
+                            style={styles.addressImage}
+                            source={{
+                                uri: "https://cdn.vox-cdn.com/thumbor/pOMbzDvdEWS8NIeUuhxp23wi_cU=/1400x1400/filters:format(png)/cdn.vox-cdn.com/uploads/chorus_asset/file/19700731/googlemaps.png",
+                            }}
+                        />
+                            <Text style={styles.addressText}>{props.route.params.marker.Address__J}</Text>
+                        </TouchableOpacity>
+                    </View>
+                    <View style={styles.phone}>
+                        <TouchableOpacity>
+                            <Text 
+                                style={styles.phoneText}
+                                onPress={()=>{Linking.openURL(`tel: ${props.route.params.marker.Contact__I}`);}}
+                            >
                                 <Image  
                                     style={styles.phoneImage} 
                                     source={{
                                         uri: "https://freesvg.org/img/molumen_phone_icon.png",
                                     }}
                                 /> 
-                                <Text 
-                                    style={styles.phoneText}
-                                    onPress={()=>{Linking.openURL(`tel: ${props.route.params.marker.Contact__I}`);}}
-                                >
-                                    {props.route.params.marker.Contact__I}
-                                </Text>
-                            </TouchableOpacity>
-                        </View>
-                    </BlurView>
-                        <View>
-                            <MapView 
-                                style={styles.directionMap}
-                                provider={PROVIDER_GOOGLE}
-                                initialRegion={{
-                                latitude: 30.2972,
-                                longitude: -97.8031,
-                                latitudeDelta: 0.423922,
-                                longitudeDelta: 0.3121,
-                                }}
-                            >
-                                <MapViewDirections
-                                    origin={origin}
-                                    destination={destination}
-                                    apikey={GOOGLE_MAPS_APIKEY}
-                                    strokeWidth={3}
-                                    strokeColor="blue"
-                                />
-                            </MapView>
-                        </View>
-                </ImageBackground>
-            </ScrollView>
+                                {props.route.params.marker.Contact__I}
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+                </BlurView>
+                    {/* <View>
+                        <MapView 
+                            style={styles.directionMap}
+                            // provider={PROVIDER_GOOGLE}
+                            initialRegion={{
+                            latitude: 30.2972,
+                            longitude: -97.8031,
+                            latitudeDelta: 0.423922,
+                            longitudeDelta: 0.3121,
+                            }}
+                        >
+                            <MapViewDirections
+                                origin={origin}
+                                destination={destination}
+                                apikey={GOOGLE_MAPS_APIKEY}
+                                strokeWidth={3}
+                                strokeColor="blue"
+                            />
+                        </MapView>
+                    </View> */}
+            </ImageBackground>
         </>
     )
 };
@@ -243,11 +252,38 @@ const styles = StyleSheet.create({
         borderRightColor: 'rgba(0,0,0,0.25)',
         borderBottomWidth: 3,
         borderBottomColor: 'rgba(0,0,0,0.25)',
-
     },
     teeText: {
         flex: 1,
         fontSize: 25,
+    },
+    address: {
+        flex: 1,
+        // justifyContent: 'center',
+        // alignItems: 'center',
+        width: 175,
+        height: 37,
+        backgroundColor: 'white',
+        position: 'absolute',
+        bottom: 190,
+        right: 10,
+        // borderRadius: 5,
+    },
+    addressImage: {
+        flex: 0,
+        width: 35,
+        height: 35,
+    },
+    addressText: {
+        flex: 0,
+        width: 150,
+        color: 'black',
+        fontSize: 13,
+        // alignSelf: 'flex-end',
+        paddingHorizontal: 10,
+        // marginBottom: 40,
+        marginTop: -33,
+        marginLeft: 30,
     },
     phone: {
         flex:0,
