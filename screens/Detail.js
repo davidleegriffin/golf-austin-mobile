@@ -17,7 +17,7 @@ import { openURL } from "expo-linking";
 import MapView, { Marker, Callout, PROVIDER_GOOGLE } from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 
-function Detail(props) {
+function Detail({props, navigation}) {
 
     const image = { uri: "https://images.unsplash.com/photo-1592919505780-303950717480?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Z29sZnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60" };
     const dress = (props.route.params.marker.DressCode__H) ? props.route.params.marker.DressCode__H : "No Dress Code Posted";
@@ -47,6 +47,11 @@ function Detail(props) {
     function teeTimes() {
         // console.log('tee times', getTeeTimes);
         openURL(`${getTeeTimes}`);
+    };
+
+    function getDirections(location) {
+        console.log("the button has been pressed", location);
+        navigation.navigate("Direction", { location });
     };
 
     return (
@@ -82,21 +87,26 @@ function Detail(props) {
                                 uri: "https://cdn.vox-cdn.com/thumbor/pOMbzDvdEWS8NIeUuhxp23wi_cU=/1400x1400/filters:format(png)/cdn.vox-cdn.com/uploads/chorus_asset/file/19700731/googlemaps.png",
                             }}
                         />
-                            <Text style={styles.addressText}>{props.route.params.marker.Address__J}</Text>
+                            <Text 
+                                style={styles.addressText}
+                                onPress={() => getDirections(location)}
+                            >
+                                {props.route.params.marker.Address__J}
+                            </Text>
                         </TouchableOpacity>
                     </View>
                     <View style={styles.phone}>
                         <TouchableOpacity>
+                            <Image  
+                                style={styles.phoneImage} 
+                                source={{
+                                    uri: "https://freesvg.org/img/molumen_phone_icon.png",
+                                }}
+                            /> 
                             <Text 
                                 style={styles.phoneText}
                                 onPress={()=>{Linking.openURL(`tel: ${props.route.params.marker.Contact__I}`);}}
                             >
-                                <Image  
-                                    style={styles.phoneImage} 
-                                    source={{
-                                        uri: "https://freesvg.org/img/molumen_phone_icon.png",
-                                    }}
-                                /> 
                                 {props.route.params.marker.Contact__I}
                             </Text>
                         </TouchableOpacity>
@@ -261,22 +271,23 @@ const styles = StyleSheet.create({
         flex: 1,
         // justifyContent: 'center',
         // alignItems: 'center',
-        width: 175,
-        height: 37,
+        width: 185,
+        height: 47,
         backgroundColor: 'white',
         position: 'absolute',
         bottom: 190,
-        right: 10,
+        right: 5,
         // borderRadius: 5,
     },
     addressImage: {
         flex: 0,
         width: 35,
         height: 35,
+        marginTop: 6,
     },
     addressText: {
         flex: 0,
-        width: 150,
+        width: 175,
         color: 'black',
         fontSize: 13,
         // alignSelf: 'flex-end',

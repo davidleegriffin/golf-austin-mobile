@@ -15,6 +15,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import LoginScreen from './screens/LoginScreen';
 import HomeScreen from "./screens/HomeScreen";
 import Detail from "./screens/Detail";
+import Direction from "./screens/Direction";
 
 const Stack = createStackNavigator();
 
@@ -67,6 +68,15 @@ export default function App() {
 								component={Detail} 
 								options={{
 									title: "Course Details",
+									headerTransparent: true,
+									headerTitleAlign: "center",
+									}}
+							/>
+							<Stack.Screen 
+								name="Direction" 
+								component={Direction} 
+								options={{
+									title: "Course Directions",
 									headerTransparent: true,
 									headerTitleAlign: "center",
 									}}
