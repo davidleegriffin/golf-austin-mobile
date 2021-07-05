@@ -92,12 +92,16 @@ if (courses === undefined) {
         <>
             <ImageBackground source={backgroundImage} style={styles.image}>
                     <View style={styles.container}>
-                        <Image
-                            style={styles.profilePic}
-                            source={{
-                                uri: `${user.photoUrl}`,
-                            }}
-                        />
+                        <TouchableOpacity>
+                            <View>
+                                <Image
+                                    style={styles.profilePic}
+                                    source={{
+                                        uri: `${user.photoUrl}`,
+                                    }}
+                                />
+                            </View>
+                        </TouchableOpacity>
                         <Text style={styles.banner}>Welcome {user.name}</Text>
                         <View style={styles.courseButtons}>
                             <TouchableOpacity style={styles.buttons} onPress={allCourses} title="All">

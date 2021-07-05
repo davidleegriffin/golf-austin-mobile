@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Button, ImageBackground, Image } from "react-native";
+import { StyleSheet, View, Text, Button, ImageBackground, Image, TouchableOpacity } from "react-native";
 import * as Google from "expo-google-app-auth";
-import { isWithinInterval } from "date-fns";
+import { openURL } from "expo-linking";
 
 
 const LoginScreen = ({ navigation }) => {
@@ -44,6 +44,11 @@ const LoginScreen = ({ navigation }) => {
         navigation.navigate("Home", { user });
     }
 
+    function sendEmail() {
+        console.log('success');
+        openURL("mailto:blastertexas@gmail.com");
+    }
+
 const image = { uri: 'https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=750&q=80' };
 
     return (
@@ -57,8 +62,32 @@ const image = { uri: 'https://images.unsplash.com/photo-1587174486073-ae5e5cff23
                         }}
                     />
                     {!user && <Button  style={styles.button} title="Login with Google" onPress={signInAsync} />}
+                    {user &&    
+                        <TouchableOpacity>
+                            <View>
+                                <Image
+                                    style={styles.profilePic}
+                                    source={{
+                                        uri: `${user.photoUrl}`,
+                                    }}
+                                />
+                            </View>
+                        </TouchableOpacity>}
                     {user && <Button style={styles.button}  title="Log-Out" onPress={signOutAsync} />}
                     {user && <Button style={styles.button}  title="Back to Map" onPress={goBack} />}
+                </View>
+                <View style={styles.feedback}>
+                    <TouchableOpacity onPress={sendEmail}>
+                        <View>
+                            <Text style={styles.feedbackText}>Email Feedback to the Developer</Text>
+                            <Image
+                                style={styles.emailIcon}
+                                source={{
+                                    uri: "https://www.pngfind.com/pngs/m/42-421842_mail-black-envelope-symbol-svg-png-icon-free.png",
+                                }}
+                            />
+                        </View>
+                    </TouchableOpacity>
                 </View>
             </ImageBackground>
         </>
@@ -87,6 +116,34 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         marginTop: 50,
     },
+    profilePic: {
+        flex: 0,
+        width: 90,
+        height: 90,
+        // marginTop: 0,
+        borderRadius: 250,
+    },
+    feedback: {
+        flex: 0,
+        width: '100%',
+        height: 80,
+        // marginBottom: 50,
+        justifyContent: 'center',
+        alignItems: 'center',
+        position: 'absolute',
+        bottom: 75,
+        backgroundColor: 'rgba(255,255,255,0.75)',
+    },
+    emailIcon: {
+        flex: 0,
+        width: 50,
+        height: 50,
+        alignSelf: 'center',
+    },
+    feedbackText: {
+        fontSize: 15,
+    },
+
 });
 
 export default LoginScreen;

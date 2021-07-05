@@ -37,7 +37,7 @@ function Detail(props) {
     console.log('location:', 'lat:', location?.coords.latitude, 'lng:', location?.coords.longitude);
 
     function teeTimes() {
-        console.log('tee times', getTeeTimes);
+        // console.log('tee times', getTeeTimes);
         openURL(`${getTeeTimes}`);
     };
 
