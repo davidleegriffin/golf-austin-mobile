@@ -13,8 +13,10 @@ import {
     } from "react-native";
 import * as Location from 'expo-location';
 
-function Direction() {
-    console.log("here");
+function Direction(props) {
+    const {location, marker} = props.route.params;
+    console.log("location", location);
+    console.log("marker", marker);
 
     return (
         <View style={styles.container}>
@@ -26,6 +28,9 @@ function Direction() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        // justifyContent: 'center',
+        alignItems: 'center',
+        top: 100,
     },
     mainText: {
         flex: 1,

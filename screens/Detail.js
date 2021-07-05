@@ -17,11 +17,14 @@ import { openURL } from "expo-linking";
 import MapView, { Marker, Callout, PROVIDER_GOOGLE } from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
 
-function Detail({props, navigation}) {
+function Detail({route, navigation}) {
+    // console.log('route.params', route.params);
+    const { marker } = route.params;
+    // console.log('props', marker);
 
     const image = { uri: "https://images.unsplash.com/photo-1592919505780-303950717480?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Z29sZnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60" };
-    const dress = (props.route.params.marker.DressCode__H) ? props.route.params.marker.DressCode__H : "No Dress Code Posted";
-    const getTeeTimes = (props.route.params.marker.TeeTimes__G) ? props.route.params.marker.TeeTimes__G : props.route.params.marker.Website__M;
+    const dress = (marker.DressCode__H) ? marker.DressCode__H : "No Dress Code Posted";
+    const getTeeTimes = (marker.TeeTimes__G) ? marker.TeeTimes__G : marker.Website__M;
     const [location, setLocation] = useState(null);
     const [errorMsg, setErrorMsg] = useState(null);
 
@@ -42,16 +45,16 @@ function Detail({props, navigation}) {
     })();
     }, []);
 
-    console.log('location:', 'lat:', location?.coords.latitude, 'lng:', location?.coords.longitude);
+    // console.log('location:', 'lat:', location?.coords.latitude, 'lng:', location?.coords.longitude);
 
     function teeTimes() {
         // console.log('tee times', getTeeTimes);
         openURL(`${getTeeTimes}`);
     };
 
-    function getDirections(location) {
-        console.log("the button has been pressed", location);
-        navigation.navigate("Direction", { location });
+    function getDirections({location, marker}) {
+        console.log("the button has been pressed", marker);
+        navigation.navigate("Direction", { location, marker });
     };
 
     return (
@@ -61,12 +64,12 @@ function Detail({props, navigation}) {
                     <Image
                     style={styles.courseImage}
                     source={{
-                        uri: `${props.route.params.marker.ImageUrl__D}`,
+                        uri: `${marker.ImageUrl__D}`,
                     }}
                     />
-                    <Text style={styles.nameText}>{props.route.params.marker.Name__A}</Text>
+                    <Text style={styles.nameText}>{marker.Name__A}</Text>
                     <View style={styles.description}>
-                        <Text style={styles.descriptionText}>{props.route.params.marker.Description__E}</Text>
+                        <Text style={styles.descriptionText}>{marker.Description__E}</Text>
                         <View style={styles.teeTimes}>
                             <TouchableOpacity>
                                 <Text style={styles.teeText} onPress={teeTimes}>Tee Times</Text>
@@ -74,7 +77,7 @@ function Detail({props, navigation}) {
                         </View>
                     </View>
                     <View style={styles.price}>
-                        <Text style={styles.priceText}>{props.route.params.marker.Price__F}</Text>
+                        <Text style={styles.priceText}>{marker.Price__F}</Text>
                     </View>
                     <View style={styles.dress}>
                         <Text style={styles.dressText}>{dress}</Text>
@@ -89,9 +92,9 @@ function Detail({props, navigation}) {
                         />
                             <Text 
                                 style={styles.addressText}
-                                onPress={() => getDirections(location)}
+                                onPress={() => getDirections({location, marker})}
                             >
-                                {props.route.params.marker.Address__J}
+                                {marker.Address__J}
                             </Text>
                         </TouchableOpacity>
                     </View>
@@ -105,9 +108,9 @@ function Detail({props, navigation}) {
                             /> 
                             <Text 
                                 style={styles.phoneText}
-                                onPress={()=>{Linking.openURL(`tel: ${props.route.params.marker.Contact__I}`);}}
+                                onPress={()=>{Linking.openURL(`tel: ${marker.Contact__I}`);}}
                             >
-                                {props.route.params.marker.Contact__I}
+                                {marker.Contact__I}
                             </Text>
                         </TouchableOpacity>
                     </View>
