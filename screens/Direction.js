@@ -20,8 +20,9 @@ function Direction(props) {
     console.log("location", location.coords);
     console.log("marker", marker);
 
-    const origin = {latitude: `${location.coords.latitude}`, longitude: `${location.coords.longitude}`};
-    const destination = {latitude: `${marker.Latitude__B}`, longitude: `${marker.Longitude__C}`};
+    const origin = {latitude: 30.51219725766055, longitude: -97.82012534354358};
+    // const origin = {latitude: location.coords?.latitude, longitude: location.coords?.longitude};
+    const destination = {latitude: marker.Latitude__B, longitude: marker.Longitude__C};
     const GOOGLE_MAPS_APIKEY = "AIzaSyCgMsmzBeaD7XLhq-YcKtJKR3mqfIbq3SQ";
 
     return (
@@ -30,14 +31,24 @@ function Direction(props) {
             <View>
                     <MapView 
                         style={styles.directionMap}
-                        provider={PROVIDER_GOOGLE}
+                        // provider={PROVIDER_GOOGLE}
                         initialRegion={{
                         latitude: 30.2972,
                         longitude: -97.8031,
-                        latitudeDelta: 0.723922,
-                        longitudeDelta: 0.6121,
+                        latitudeDelta: 0.523922,
+                        longitudeDelta: 0.4121,
                         }}
                     >
+                        <Marker
+                            coordinate={origin}
+                            image={require('./App-golf-game-icon.png')}
+                        >
+                        </Marker>
+                        <Marker
+                            coordinate={destination}
+                            image={require('./App-golf-game-icon.png')}
+                        >
+                        </Marker>
                         <MapViewDirections
                             origin={origin}
                             destination={destination}
