@@ -304,7 +304,7 @@ const styles = StyleSheet.create({
         width: '100%',
         // height: 50,
         position: 'absolute',
-        bottom: 85,
+        bottom: 50,
         // left: 143,
         backgroundColor: 'white',
         justifyContent: 'center',

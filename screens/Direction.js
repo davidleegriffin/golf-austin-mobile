@@ -9,7 +9,8 @@ import {
     Dimensions,
     Linking,
     ScrollView,
-    StatusBar 
+    StatusBar,
+    Body 
     } from "react-native";
 import * as Location from 'expo-location';
 import MapView, { Marker, Callout, PROVIDER_GOOGLE } from 'react-native-maps';
@@ -17,15 +18,16 @@ import MapViewDirections from 'react-native-maps-directions';
 
 function Direction(props) {
     const {location, marker} = props.route.params;
-    console.log("location", location.coords);
-    console.log("marker", marker);
+    // console.log("location", location.coords);
+    // console.log("marker", marker);
+
+    const [distance, setDistance] = useState();
+    const [duration, setDuration] = useState();
 
     const origin = {latitude: 30.5122, longitude: -97.8201};
     // const origin = {latitude: location.coords?.latitude, longitude: location.coords?.longitude};
     const destination = {latitude: marker.Latitude__B, longitude: marker.Longitude__C};
     const GOOGLE_MAPS_APIKEY = "AIzaSyCgMsmzBeaD7XLhq-YcKtJKR3mqfIbq3SQ";
-    const deltaLng = (origin.longitude) - (marker.Longitude__C);
-    console.log('deltaLng', deltaLng);
 
     return (
         <View style={styles.container}>
@@ -35,11 +37,10 @@ function Direction(props) {
                         style={styles.directionMap}
                         // provider={PROVIDER_GOOGLE}
                         initialRegion={{
-                        latitude: 30.2872,
+                        latitude: 30.2172,
                         longitude: -97.8031,
                         latitudeDelta: 0.473922,
-                        // longitudeDelta: deltaLng,
-                        longitudeDelta: 0.3512,
+                        longitudeDelta: 0.3721,
                         }}
                     >
                         <Marker
@@ -60,7 +61,19 @@ function Direction(props) {
                             apikey={GOOGLE_MAPS_APIKEY}
                             strokeWidth={5}
                             strokeColor="blue"
+                            onReady={result => {
+                                // distanceResult = result.distance
+                                // durationResult = result.duration
+                                console.log(`Distance: ${result.distance} km`)
+                                setDistance((result.distance * 0.6214).toFixed(2))
+                                console.log(`Duration: ${result.duration} min.`)
+                                setDuration((result.duration).toFixed(1))
+                                // this.forceUpdate()
+                            }}
                         />
+                        <View style={styles.info}>
+                            <Text style={styles.infoText}>{`DISTANCE: ${distance} miles      TIME: ${duration} min`}</Text>
+                        </View>
                     </MapView>
                 </View>
         </View>
@@ -81,6 +94,16 @@ const styles = StyleSheet.create({
         flex: 1,
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height,
+    },
+    info: {
+        flex: 0,
+        width: '100%',
+        height: 30,
+        backgroundColor: 'rgba(255,255,255,0.65)'
+    },
+    infoText: {
+        flex: 1,
+        fontSize: 23,
     },
 })
 

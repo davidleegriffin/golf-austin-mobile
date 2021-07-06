@@ -45,7 +45,7 @@ const LoginScreen = ({ navigation }) => {
     }
 
     function sendEmail() {
-        console.log('success');
+        // console.log('success');
         openURL("mailto:blastertexas@gmail.com");
     }
 
@@ -126,12 +126,12 @@ const styles = StyleSheet.create({
     feedback: {
         flex: 0,
         width: '100%',
-        height: 80,
+        height: 60,
         // marginBottom: 50,
         justifyContent: 'center',
         alignItems: 'center',
         position: 'absolute',
-        bottom: 75,
+        bottom: 50,
         backgroundColor: 'rgba(255,255,255,0.75)',
     },
     emailIcon: {
