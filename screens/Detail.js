@@ -53,7 +53,7 @@ function Detail({route, navigation}) {
     };
 
     function getDirections({location, marker}) {
-        console.log("the button has been pressed", marker);
+        // console.log("the button has been pressed", marker);
         navigation.navigate("Direction", { location, marker });
     };
 
@@ -274,7 +274,7 @@ const styles = StyleSheet.create({
         flex: 1,
         // justifyContent: 'center',
         // alignItems: 'center',
-        width: 185,
+        width: 195,
         height: 47,
         backgroundColor: 'white',
         position: 'absolute',
