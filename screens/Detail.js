@@ -210,7 +210,7 @@ const styles = StyleSheet.create({
     price: {
         flex: 1,
         position: 'absolute',
-        top: 375,
+        top: 370,
         right: 1,
         width: 175,
         backgroundColor: 'rgba(155,155,125,0.75)',
@@ -230,7 +230,7 @@ const styles = StyleSheet.create({
     dress: {
         flex: 1,
         position: 'absolute',
-        top: 495,
+        top: 485,
         right: 1,
         width: 175,
         backgroundColor: 'rgba(45,105,25,0.5)',
