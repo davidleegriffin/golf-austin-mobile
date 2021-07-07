@@ -56,6 +56,9 @@ function Detail({route, navigation}) {
         // console.log("the button has been pressed", marker);
         navigation.navigate("Direction", { location, marker });
     };
+    function getCalendar() {
+        console.log('calendar');
+    }
 
     return (
         <>  
@@ -76,6 +79,11 @@ function Detail({route, navigation}) {
                             </TouchableOpacity>
                         </View>
                     </View>
+                        <View style={styles.calendarLink}>
+                            <TouchableOpacity>
+                                <Text style={styles.calendarText} onPress={getCalendar}>Calendar</Text>
+                            </TouchableOpacity>
+                        </View>
                     <View style={styles.price}>
                         <Text style={styles.priceText}>{marker.Price__F}</Text>
                     </View>
@@ -115,26 +123,6 @@ function Detail({route, navigation}) {
                         </TouchableOpacity>
                     </View>
                 </BlurView>
-                    {/* <View>
-                        <MapView 
-                            style={styles.directionMap}
-                            // provider={PROVIDER_GOOGLE}
-                            initialRegion={{
-                            latitude: 30.2972,
-                            longitude: -97.8031,
-                            latitudeDelta: 0.423922,
-                            longitudeDelta: 0.3121,
-                            }}
-                        >
-                            <MapViewDirections
-                                origin={origin}
-                                destination={destination}
-                                apikey={GOOGLE_MAPS_APIKEY}
-                                strokeWidth={3}
-                                strokeColor="blue"
-                            />
-                        </MapView>
-                    </View> */}
             </ImageBackground>
         </>
     )
@@ -267,6 +255,29 @@ const styles = StyleSheet.create({
         borderBottomColor: 'rgba(0,0,0,0.25)',
     },
     teeText: {
+        flex: 1,
+        fontSize: 25,
+    },
+    calendarLink: {
+        flex: 0,
+        width: '40%',
+        height: 35,
+        position: 'absolute',
+        bottom: '17.5%',
+        left: 17,
+        marginTop: 20,
+        marginLeft: '1%',
+        backgroundColor: 'beige',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 10,
+        borderWidth: 0.5,
+        borderRightWidth: 3,
+        borderRightColor: 'rgba(0,0,0,0.25)',
+        borderBottomWidth: 3,
+        borderBottomColor: 'rgba(0,0,0,0.25)',
+    },
+    calendarText: {
         flex: 1,
         fontSize: 25,
     },
