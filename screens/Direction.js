@@ -29,6 +29,16 @@ function Direction(props) {
     const destination = {latitude: marker.Latitude__B, longitude: marker.Longitude__C};
     const GOOGLE_MAPS_APIKEY = "AIzaSyCgMsmzBeaD7XLhq-YcKtJKR3mqfIbq3SQ";
 
+    // const delta = 0.3731;
+    const deltaLong = (Math.abs((-97.8201) - (marker.Longitude__C)) + 0.2);
+    console.log('deltaLong', deltaLong);
+    const deltaLat = (Math.abs((30.5122) - (marker.Latitude__B)) + 0.2);
+    console.log('deltaLat', deltaLat);
+    const detailLong = ((-97.8201 + marker.Longitude__C)/2) + 0.01;
+    console.log('detailLong', detailLong);
+    const detailLat = ((30.5122 + marker.Latitude__B)/2) - 0.05;
+    console.log('detailLat', detailLat);
+
     return (
         <View style={styles.container}>
             <Text style={styles.mainText}>DIRECTION</Text>
@@ -37,10 +47,10 @@ function Direction(props) {
                         style={styles.directionMap}
                         // provider={PROVIDER_GOOGLE}
                         initialRegion={{
-                        latitude: 30.2172,
-                        longitude: -97.8031,
-                        latitudeDelta: 0.473922,
-                        longitudeDelta: 0.3721,
+                        latitude: detailLat,
+                        longitude: detailLong,
+                        latitudeDelta: deltaLat,
+                        longitudeDelta: deltaLong,
                         }}
                     >
                         <Marker
