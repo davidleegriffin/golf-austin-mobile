@@ -203,7 +203,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 295,
         width: 380,
-        height: 480,
+        height: '50%',
         borderRadius: 25,
         borderWidth: 0.75,
     },
