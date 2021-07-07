@@ -19,6 +19,7 @@ const LoginScreen = ({ navigation }) => {
             // Then you can use the Google REST API
             setUser(user);
             setAccessToken(accessToken);
+            console.log("accessToken", accessToken);
             console.log("LoginScreen.js 17 | success, navigating to profile");
             navigation.navigate("Home", { user });
 

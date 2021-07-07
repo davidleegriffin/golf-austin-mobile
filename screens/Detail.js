@@ -58,6 +58,7 @@ function Detail({route, navigation}) {
     };
     function getCalendar() {
         console.log('calendar');
+        openURL('https://calendar.google.com/');
     }
 
     return (
@@ -285,7 +286,7 @@ const styles = StyleSheet.create({
         flex: 1,
         // justifyContent: 'center',
         // alignItems: 'center',
-        width: 195,
+        width: 197,
         height: '6.85%',
         backgroundColor: 'white',
         position: 'absolute',
