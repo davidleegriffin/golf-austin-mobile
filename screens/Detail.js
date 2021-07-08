@@ -19,8 +19,9 @@ import MapViewDirections from 'react-native-maps-directions';
 
 function Detail({route, navigation}) {
     // console.log('route.params', route.params);
-    const { marker } = route.params;
+    const { marker, accessToken } = route.params;
     // console.log('props', marker);
+    console.log('detailToken', accessToken);
 
     const image = { uri: "https://images.unsplash.com/photo-1592919505780-303950717480?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Z29sZnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60" };
     const dress = (marker.DressCode__H) ? marker.DressCode__H : "No Dress Code Posted";
@@ -56,10 +57,37 @@ function Detail({route, navigation}) {
         // console.log("the button has been pressed", marker);
         navigation.navigate("Direction", { location, marker });
     };
+
+    // async function getCalendar() { 
+    //     let calendarsList = await fetch('https://www.googleapis.com/calendar/v3/calendars/primary/events', {
+    //             headers: { Authorization: `Bearer ${accessToken}`},
+    //             });
+    //             return calendarsList.json();
+    // };
     function getCalendar() {
-        console.log('calendar');
-        openURL('https://calendar.google.com/');
+        console.log('getCalendar');
+        const calendarsList = async () => {
+            await fetch('https://www.googleapis.com/calendar/v3/calendars/primary/events', {
+            headers: { Authorization: `Bearer ${accessToken}`},
+            });
+        }
+        calendarsList();
+        console.log('calendarsList', calendarsList());
     }
+        // openURL('https://calendar.google.com/');
+        // let restRequest = async (accessToken) => {
+        //     let calendarsList = await fetch('https://www.googleapis.com/calenda/v3/users/me/calendarList', {
+        //     headers: { Authorization: `Bearer ${accessToken}`},
+        //     });
+        //     console.log('calendarList', calendarList);
+        //     return calendarsList.json();
+        // }
+        
+        // gapi.client.request({
+        //     'path': 'https://people.googleapis.com/v3/calendars/primary',
+        //     'params': {'sortOrder': 'LAST_NAME_ASCENDING'}
+        //   });
+    // }
 
     return (
         <>  

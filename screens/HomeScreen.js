@@ -13,8 +13,9 @@ import { useQuery } from "@apollo/client";
 import { GET_GOLF } from "../queries/getGolf.js";
 
 const HomeScreen = ({ route, navigation }) => {
-const { user } = route.params;
+const { user, accessToken } = route.params;
 const [courses, setCourses] = useState();
+console.log('homeAccessToken', accessToken);
 
 const {
     data,
@@ -30,9 +31,9 @@ if (error) return <Text>{error?.message}</Text>
 
 const backgroundImage = { uri: 'https://images.unsplash.com/photo-1595841055318-943e15fbbe80?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTgzfHxnb2xmfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60' };
 
-function selectCourse(marker) {
+function selectCourse(marker, accessToken) {
     // console.log("the button has been pressed", marker);
-    navigation.navigate("Detail", { marker });
+    navigation.navigate("Detail", { marker, accessToken });
 };
 
 
@@ -160,7 +161,7 @@ if (courses === undefined) {
                                 title={`${marker.Name__A}`}
                                 description={`${marker.Description__E}`}
                                 >
-                                    <Callout style={styles.tooltip} onPress={() => selectCourse(marker)}>
+                                    <Callout style={styles.tooltip} onPress={() => selectCourse(marker, accessToken)}>
                                         <Text style={styles.toolText}>{`${marker.Name__A}`}</Text>
                                     </Callout>
                                 </Marker>

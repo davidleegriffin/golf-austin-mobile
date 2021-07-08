@@ -19,9 +19,9 @@ const LoginScreen = ({ navigation }) => {
             // Then you can use the Google REST API
             setUser(user);
             setAccessToken(accessToken);
-            console.log("accessToken", accessToken);
+            // console.log("accessToken", accessToken);
             console.log("LoginScreen.js 17 | success, navigating to profile");
-            navigation.navigate("Home", { user });
+            navigation.navigate("Home", { user, accessToken });
 
         }
         } catch (error) {
@@ -37,12 +37,12 @@ const LoginScreen = ({ navigation }) => {
 
         await Google.logOutAsync({ accessToken, ...config });
         setUser();
-        setAccessToken();
+        setAccessToken('');
         console.log("you have successfully logged out");
     };
 
     const goBack = () => {
-        navigation.navigate("Home", { user });
+        navigation.navigate("Home", { user, accessToken });
     }
 
     function sendEmail() {
