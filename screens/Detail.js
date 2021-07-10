@@ -109,12 +109,12 @@ function Detail({route, navigation}) {
                                 <Text style={styles.teeText} onPress={teeTimes}>Tee Times</Text>
                             </TouchableOpacity>
                         </View>
-                    </View>
                         <View style={styles.calendarLink}>
                             <TouchableOpacity>
                                 <Text style={styles.calendarText} onPress={getCalendar}>Calendar</Text>
                             </TouchableOpacity>
                         </View>
+                    </View>
                     <View style={styles.price}>
                         <Text style={styles.priceText}>{marker.Price__F}</Text>
                     </View>
@@ -210,14 +210,14 @@ const styles = StyleSheet.create({
         flex: 1,
         width: '49%',
         position: 'absolute',
-        top: 170,
+        top: 185,
         margin: 5,
         backgroundColor: 'rgba(255,255,255,1)',
         borderRadius: 25,
         padding: 15,
         borderRightWidth: 3,
         borderBottomWidth: 3,
-        
+        paddingBottom: 50,
     },
     descriptionText: {
         flex: 1,
@@ -225,6 +225,52 @@ const styles = StyleSheet.create({
         textShadowColor: 'rgba(0,0,0,0.5)',
         textShadowOffset: {width: 0.75, height: 0.75},
         textShadowRadius: 1.5,
+    },
+    teeTimes: {
+        flex: 0,
+        width: '100%',
+        height: 35,
+        // position: 'absolute',
+        // top: 655,
+        // left: 33,
+        marginTop: 20,
+        marginLeft: '1%',
+        backgroundColor: 'beige',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 10,
+        borderWidth: 0.5,
+        borderRightWidth: 3,
+        borderRightColor: 'rgba(0,0,0,0.25)',
+        borderBottomWidth: 3,
+        borderBottomColor: 'rgba(0,0,0,0.25)',
+    },
+    teeText: {
+        flex: 1,
+        fontSize: 25,
+    },
+    calendarLink: {
+        flex: 0,
+        width: '100%',
+        height: 35,
+        position: 'absolute',
+        bottom: '3%',
+        left: 15,
+        marginTop: 20,
+        marginLeft: '1%',
+        backgroundColor: 'beige',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 10,
+        borderWidth: 0.5,
+        borderRightWidth: 3,
+        borderRightColor: 'rgba(0,0,0,0.25)',
+        borderBottomWidth: 3,
+        borderBottomColor: 'rgba(0,0,0,0.25)',
+    },
+    calendarText: {
+        flex: 1,
+        fontSize: 25,
     },
     price: {
         flex: 1,
@@ -265,52 +311,6 @@ const styles = StyleSheet.create({
         textShadowOffset: {width: 2, height: 2},
         textShadowRadius: 2,
         padding: 2,
-    },
-    teeTimes: {
-        flex: 0,
-        width: '100%',
-        height: 35,
-        // position: 'absolute',
-        // top: 655,
-        // left: 33,
-        marginTop: 20,
-        marginLeft: '1%',
-        backgroundColor: 'beige',
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: 10,
-        borderWidth: 0.5,
-        borderRightWidth: 3,
-        borderRightColor: 'rgba(0,0,0,0.25)',
-        borderBottomWidth: 3,
-        borderBottomColor: 'rgba(0,0,0,0.25)',
-    },
-    teeText: {
-        flex: 1,
-        fontSize: 25,
-    },
-    calendarLink: {
-        flex: 0,
-        width: '40%',
-        height: 35,
-        position: 'absolute',
-        bottom: '17.5%',
-        left: 17,
-        marginTop: 20,
-        marginLeft: '1%',
-        backgroundColor: 'beige',
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: 10,
-        borderWidth: 0.5,
-        borderRightWidth: 3,
-        borderRightColor: 'rgba(0,0,0,0.25)',
-        borderBottomWidth: 3,
-        borderBottomColor: 'rgba(0,0,0,0.25)',
-    },
-    calendarText: {
-        flex: 1,
-        fontSize: 25,
     },
     address: {
         flex: 1,
