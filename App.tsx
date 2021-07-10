@@ -16,7 +16,7 @@ import LoginScreen from './screens/LoginScreen';
 import HomeScreen from "./screens/HomeScreen";
 import Detail from "./screens/Detail";
 import Direction from "./screens/Direction";
-import Calendar from "./screens/Calendar";
+import TeeTimeCalendar from "./screens/TeeTimeCalendar";
 
 const Stack = createStackNavigator();
 
@@ -83,8 +83,8 @@ export default function App() {
 									}}
 							/>
 							<Stack.Screen 
-								name="Calendar" 
-								component={Calendar} 
+								name="TeeTimeCalendar" 
+								component={TeeTimeCalendar} 
 								options={{
 									title: "Tee Times Calendar",
 									headerTransparent: true,
