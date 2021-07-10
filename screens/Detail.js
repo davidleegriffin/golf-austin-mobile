@@ -58,23 +58,25 @@ function Detail({route, navigation}) {
         navigation.navigate("Direction", { location, marker });
     };
 
-    // async function getCalendar() { 
-    //     let calendarsList = await fetch('https://www.googleapis.com/calendar/v3/calendars/primary/events', {
-    //             headers: { Authorization: `Bearer ${accessToken}`},
-    //             });
-    //             return calendarsList.json();
-    // };
     function getCalendar() {
         console.log('getCalendar');
-        const calendarsList = async () => {
-            await fetch('https://www.googleapis.com/calendar/v3/calendars/primary/events', {
-            headers: { Authorization: `Bearer ${accessToken}`},
-            });
-        }
-        calendarsList();
-        console.log('calendarsList', calendarsList());
-    }
         // openURL('https://calendar.google.com/');
+        navigation.navigate("Calendar", {marker});
+    }
+        // async function getCalendar() { 
+        //     let calendarsList = await fetch('https://www.googleapis.com/calendar/v3/calendars/primary/events', {
+        //             headers: { Authorization: `Bearer ${accessToken}`},
+        //             });
+        //             return calendarsList.json();
+        // };
+        // const calendarsList = async () => {
+        //     let output = await fetch('https://www.googleapis.com/calendar/v3/users/me/calendarList', {
+        //     headers: { Authorization: `Bearer ${accessToken}`},
+        //     }).then(res => res.json()).then(data => console.log('data', data));
+        //     return output;
+        // }
+        // calendarsList();
+        // console.log('calendarsList', calendarsList());
         // let restRequest = async (accessToken) => {
         //     let calendarsList = await fetch('https://www.googleapis.com/calenda/v3/users/me/calendarList', {
         //     headers: { Authorization: `Bearer ${accessToken}`},
