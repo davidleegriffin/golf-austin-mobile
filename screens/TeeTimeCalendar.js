@@ -14,11 +14,15 @@ import {
 import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
 
 function TeeTimeCalendar({route, navigation}) {
-    console.log('route', route.params.marker);
+    // console.log('route', route.params.marker);
+    const marker = route.params.marker;
 
-    function getAgenda(day) {
-        console.log(day.dateString);
+    function getAgenda({day, marker}) {
+        // console.log(day.dateString);
+        navigation.navigate("DailyAgenda", {day, marker});
     }
+
+   
 
     return (
         <>
@@ -76,29 +80,9 @@ function TeeTimeCalendar({route, navigation}) {
                 showScrollIndicator={true}
                 //   ...calendarParams
                 minDate={new Date()}
-                onDayPress={(day) => {getAgenda(day)}}
+                onDayPress={(day) => {getAgenda({day, marker})}}
                 />
-                <Agenda
-                // The list of items that have to be displayed in agenda. If you want to render item as empty date
-                // the value of date key has to be an empty array []. If there exists no value for date key it is
-                // considered that the date in question is not yet loaded
-                onDayPress={(day) => {console.log('day pressed', day)}}
-                items={{
-                    '2021-07-11': [{name: 'item 1 - any js object'}],
-                    '2021-07-13': [{name: 'item 2 - any js object', height: 80}],
-                    '2021-07-14': [],
-                    '2021-07-15': [{name: 'item 3 - any js object'}, {name: 'any js object'}]
-                }}
-                theme={{
-                    // ...calendarTheme,
-                    agendaDayTextColor: 'black',
-                    agendaDayNumColor: 'green',
-                    agendaTodayColor: 'red',
-                    agendaKnobColor: 'blue'
-                }}
-                  // Agenda container style
-                style={{}}
-                />
+               
             </View>
         </>
     )

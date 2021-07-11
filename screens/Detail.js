@@ -21,7 +21,7 @@ function Detail({route, navigation}) {
     // console.log('route.params', route.params);
     const { marker, accessToken } = route.params;
     // console.log('props', marker);
-    console.log('detailToken', accessToken);
+    // console.log('detailToken', accessToken);
 
     const image = { uri: "https://images.unsplash.com/photo-1592919505780-303950717480?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Z29sZnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60" };
     const dress = (marker.DressCode__H) ? marker.DressCode__H : "No Dress Code Posted";
@@ -59,7 +59,7 @@ function Detail({route, navigation}) {
     };
 
     function getCalendar() {
-        console.log('getCalendar');
+        // console.log('getCalendar');
         // openURL('https://calendar.google.com/');
         navigation.navigate("TeeTimeCalendar", {marker});
     }
@@ -69,12 +69,18 @@ function Detail({route, navigation}) {
         //             });
         //             return calendarsList.json();
         // };
-        // const calendarsList = async () => {
-        //     let output = await fetch('https://www.googleapis.com/calendar/v3/users/me/calendarList', {
-        //     headers: { Authorization: `Bearer ${accessToken}`},
-        //     }).then(res => res.json()).then(data => console.log('data', data));
-        //     return output;
-        // }
+
+    // useEffect(() => {
+    // const calendarsList = async () => {
+    //     let response = await fetch('https://www.googleapis.com/calendar/v3/users/me/calendarList', {
+    //     headers: { Authorization: `Bearer ${accessToken}`},
+    //     });
+    //     const data = await response.json(); 
+    //     console.log('data', data);
+    // };
+    // calendarsList();
+    // }, []);
+
         // calendarsList();
         // console.log('calendarsList', calendarsList());
         // let restRequest = async (accessToken) => {

@@ -15,7 +15,7 @@ import { GET_GOLF } from "../queries/getGolf.js";
 const HomeScreen = ({ route, navigation }) => {
 const { user, accessToken } = route.params;
 const [courses, setCourses] = useState();
-console.log('homeAccessToken', accessToken);
+// console.log('homeAccessToken', accessToken);
 
 const {
     data,
