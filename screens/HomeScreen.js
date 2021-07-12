@@ -26,7 +26,17 @@ const {
 const golfCourses = data?.golf;
 // console.log('golfCourses', golfCourses);
 
-if (loading) return <Text>Almost there...</Text>
+if (loading) return (
+    <View style={styles.loadingContainer}>
+        {/* <Text style={styles.loadingText}>Almost there...</Text> */}
+        <Image
+            style={styles.golfBall}
+            source={{
+                uri: "https://images.unsplash.com/photo-1593111774642-a746f5006b7b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8Z29sZnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60",
+            }}
+        />
+    </View>
+);
 if (error) return <Text>{error?.message}</Text>
 
 const backgroundImage = { uri: 'https://images.unsplash.com/photo-1595841055318-943e15fbbe80?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTgzfHxnb2xmfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60' };
@@ -183,6 +193,20 @@ if (courses === undefined) {
 export default HomeScreen;
 
 const styles = StyleSheet.create({
+    loadingContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'green',
+    },
+    loadingText: {
+        flex: 1,
+        position: 'absolute',
+        top: '50%',
+        left: '30%',
+        color: 'white',
+        fontSize: 25,
+    },
     container: {
         flex: 1,
         flexDirection: 'column',
