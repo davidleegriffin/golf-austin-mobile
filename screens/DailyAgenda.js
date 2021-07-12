@@ -14,10 +14,33 @@ import {
 import {Calendar, CalendarList, Agenda} from 'react-native-calendars';
 
 function DailyAgenda({route, navigation}) {
-    console.log('route', route);
+    let calDates = {};
+    
+    const selectedDay = route.params.day.dateString;
+    // console.log('selectedDay', selectedDay);
+
+    
+    for (let i=0; i<365; i++) {
+        const tomorrow = new Date(selectedDay);
+        tomorrow.setDate(tomorrow.getDate() + i);
+        let month = '' + tomorrow.getMonth();
+        let day = '' + tomorrow.getDate();
+        let year = tomorrow.getFullYear();
+        if (month.length < 2) 
+            month = '0' + month;
+        if (day.length < 2) 
+            day = '0' + day;
+        let alteredDate = [year, month, day].join('-');
+        // console.log('tomorrow', alteredDate);
+        calDates[`${alteredDate}`] = [];
+    }
+    console.log('calDates', calDates);
+
+    const marker = route.params.marker;
+    // console.log('marker', marker);
 
     const renderItem = (item) => {
-        // console.log('rendering', item)
+        console.log('item', item.name);
         return (
         <>
             <View>
@@ -28,20 +51,32 @@ function DailyAgenda({route, navigation}) {
         );
     } 
 
+
+  const renderEmptyDate = () => {
+    return (
+      <View style={styles.emptyDate}>
+        <Text>This is empty date!</Text>
+      </View>
+    );
+  }
+
     return (
     <View style={styles.container}>
         <Agenda
         // The list of items that have to be displayed in agenda. If you want to render item as empty date
         // the value of date key has to be an empty array []. If there exists no value for date key it is
         // considered that the date in question is not yet loaded
-        onDayPress={(day) => {console.log('day pressed', day)}}
-        items={{
-            '2021-07-11': [{name: 'item 1 - any js object'}],
-            '2021-07-13': [{name: 'item 2 - any js object'}],
-            '2021-07-14': [],
-            '2021-07-15': [{name: 'item 3 - any js object'}]
-        }}
+        // onDayPress={(day) => {console.log('day pressed', day)}}
+        items={
+            calDates
+            // '{`${selectedDay}`}': [{name: 'item 1 - any js object'}],
+            // '2021-07-19': [{name: 'item 2 - any js object'}],
+            // '2021-07-20': [],
+            // '2021-07-21': [{name: 'item 3 - any js object'}]
+        }
         renderItem={(item, firstItemInDay) => { return (renderItem(item, firstItemInDay))}}
+        renderEmptyDate={() => {return (renderEmptyDate())}}
+        selected={`${selectedDay}`}
         theme={{
             // ...calendarTheme,
             agendaDayTextColor: 'black',
@@ -59,6 +94,15 @@ function DailyAgenda({route, navigation}) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        width: '100%',
+        height: '100%',
+        marginTop: 50,
+        paddingTop: '20%',
+    },
+    emptyDate: {
+        height: 15,
+        flex: 1,
+        paddingTop: 30,
     },
 });
 

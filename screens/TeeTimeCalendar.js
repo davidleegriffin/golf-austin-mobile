@@ -22,7 +22,11 @@ function TeeTimeCalendar({route, navigation}) {
         navigation.navigate("DailyAgenda", {day, marker});
     }
 
-   
+// const today = new Date();
+// console.log('today', today);
+// const tomorrow = new Date();
+// tomorrow.setDate(tomorrow.getDate() + 1);
+// console.log('tomorrow', tomorrow);
 
     return (
         <>
