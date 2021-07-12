@@ -55,7 +55,7 @@ function DailyAgenda({route, navigation}) {
   const renderEmptyDate = () => {
     return (
       <View style={styles.emptyDate}>
-        <Text>This is empty date!</Text>
+        <Text>+</Text>
       </View>
     );
   }

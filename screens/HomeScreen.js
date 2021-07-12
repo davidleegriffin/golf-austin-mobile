@@ -67,6 +67,9 @@ golfCourses.map(hole => {
     }
 });
 
+let favCourses = [];
+favCourses.push(golfCourses[7]);
+
 function allCourses() {
     setCourses(locations);
 };
@@ -83,6 +86,10 @@ function nines() {
     setCourses(nineCourses);
 };
 
+function favCourse() {
+    setCourses(favCourses);
+}
+
 if (courses === undefined) {
     setCourses(locations);
 };
@@ -93,7 +100,7 @@ if (courses === undefined) {
         <>
             <ImageBackground source={backgroundImage} style={styles.image}>
                     <View style={styles.container}>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={favCourse}>
                             <View>
                                 <Image
                                     style={styles.profilePic}

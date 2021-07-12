@@ -60,8 +60,8 @@ function Detail({route, navigation}) {
 
     function getCalendar() {
         // console.log('getCalendar');
-        // openURL('https://calendar.google.com/');
-        navigation.navigate("TeeTimeCalendar", {marker});
+        openURL('https://calendar.google.com/');
+        // navigation.navigate("TeeTimeCalendar", {marker});
     }
         // async function getCalendar() { 
         //     let calendarsList = await fetch('https://www.googleapis.com/calendar/v3/calendars/primary/events', {
