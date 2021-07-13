@@ -1,15 +1,19 @@
-# react-native-stepzen
+# golf-austin-mobile
 
 Install Expo
 ```
 npm install -g expo-cli
-or 
-yarn global add expo-cli
 ```
 
 Clone the repo
 ```
-git clone git@github.com:stepzen-samples/react-native-stepzen.git
+git clone https://github.com/davidleegriffin/golf-austin-mobile
+cd golf-austin-mobile
+```
+
+Install Dependancies
+```
+npm install
 ```
 
 Start up StepZen
@@ -19,7 +23,7 @@ $ stepzen start
 ```
 
 
-Manually add your admin key and uri in the App.tsx. Still working on adding .env variables to the build and development environments
+Manually add your admin key and uri in the App.tsx. 
 ```
 const client = new ApolloClient({
 	link: createHttpLink({
@@ -35,9 +39,7 @@ const client = new ApolloClient({
 
 Start up the development environment
 ```
-npm start
-or 
-yarn start
+expo start
 ```
 
-Download the expo App on your phone and scan the QR code or open it in your browser
+Download the expo App on your phone and scan the QR code or open it in your IOS simulator.
