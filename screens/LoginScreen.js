@@ -3,16 +3,40 @@ import { StyleSheet, View, Text, Button, ImageBackground, Image, TouchableOpacit
 import * as Google from "expo-google-app-auth";
 import { openURL } from "expo-linking";
 
+import { gql, useQuery, useMutation } from "@apollo/client";
+
+const CREATE_USER = gql`
+mutation CreateUser ($name: String!, $photoUrl: String!, $email: String!, $familyName: String!, $givenName: String!, $id: String!) {
+  createUser(
+    data: {
+        name: $name
+        photoUrl: $photoUrl
+        email: $email
+        familyName: $familyName
+        givenName: $givenName
+        id: $id
+    }
+  ) {
+    email
+    givenName
+    familyName
+    name
+    photoUrl
+  }
+}
+`;
 
 const LoginScreen = ({ navigation }) => {
+    const [createUser, {data}] = useMutation(CREATE_USER)
+
     const [user, setUser] = useState(null);
     const [accessToken, setAccessToken] = useState();
     const signInAsync = async () => {
         // console.log("LoginScreen.js 6 | loggin in");
         try {
         const { type, accessToken, user } = await Google.logInAsync({
-            iosClientId: `747145895419-t2kvroidqb8r2fcf0e8uf7no74khr4m9.apps.googleusercontent.com`,
-            androidClientId: `747145895419-t4vq6rbo2tkang7vabvf5dqgtlqhrv2s.apps.googleusercontent.com`,
+            iosClientId: `{{iosClientId}}`,
+            androidClientId: `{{androidClientId}}`,
         });
 
         if (type === "success") {
@@ -21,6 +45,8 @@ const LoginScreen = ({ navigation }) => {
             setAccessToken(accessToken);
             // console.log("accessToken", accessToken);
             console.log("LoginScreen.js 17 | success, navigating to profile");
+            console.log('user', user)
+            createUser({variables: {name: user.name, email: user.email,  familyName: user.familyName, givenName: user.givenName,  id: user.id, photoUrl: user.photoUrl}});
             navigation.navigate("Home", { user, accessToken });
 
         }
@@ -31,8 +57,8 @@ const LoginScreen = ({ navigation }) => {
 
     const signOutAsync = async () => {
         const config = {
-            iosClientId: `747145895419-t2kvroidqb8r2fcf0e8uf7no74khr4m9.apps.googleusercontent.com`,
-            androidClientId: `747145895419-t4vq6rbo2tkang7vabvf5dqgtlqhrv2s.apps.googleusercontent.com`,
+            iosClientId: `{{iosClientId}}`,
+            androidClientId: `{{androidClientId}}`,
         };
 
         await Google.logOutAsync({ accessToken, ...config });

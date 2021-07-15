@@ -1,0 +1,38 @@
+
+type User {
+  email: String!
+  familyName: String!
+  givenName: String!
+  id: String!
+  name: String!
+  photoUrl: String!
+}
+
+input UserInput {
+  email: String!
+  familyName: String!
+  givenName: String!
+  id: String!
+  name: String!
+  photoUrl: String!
+}
+
+type Mutation {
+  createUser(data: UserInput!): User!
+    @graphql(
+        endpoint: "https://graphql.us.fauna.com/graphql"
+        configuration: "fauna_config"
+        )
+}
+
+# mutation MyMutation {
+#   createUser(
+#     data: {name: "John Doe", photoUrl: "https://picsum.photos/200/300", email: "example@gmail.com", familyName: "Doe", givenName: "John", id: "12345"}
+#   ) {
+#     email
+#     givenName
+#     familyName
+#     name
+#     photoUrl
+#   }
+# }
