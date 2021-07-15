@@ -1,6 +1,6 @@
 schema
   @sdl(
-    files: [ "golfaustin.graphql"]
+    files: [ "golfaustin.graphql", "fauna.graphql", "google-calendar.graphql"]
   ) {
   query: Query
 }

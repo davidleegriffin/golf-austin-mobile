@@ -13,18 +13,11 @@ type createMeeting {
 }
 
 type Mutation {
-    # createMeeting (summary: String!, location: String!, description: String!): createMeeting
-    #     @rest (
-    #         resultroot: ""
-    #         endpoint: 
-    #         "https://restbackend.ngrok.io?query=summary:$summary;,location:$location;,description:$description;&api_key=01757fe2-6c45-4451-b35e-b24734bf7889"
-    #         configuration: "google_calendar")
-
-    createMeeting (summary: String!, location: String!, description: String!, calendar: String!, start: String!, end: String!, timezone: String!, rule: String!, email: String!, method: String!): createMeeting
+    createMeeting (summary: String!, location: String!, description: String!, start: String!, end: String!, timezone: String!, email: String!): createMeeting
 		@rest(
 		method: POST
         postbody: "{\"summary\": \"{{.Get \"summary\" }}\",\"location\": \"{{.Get \"location\" }}\",\"description\": \"{{.Get \"description\" }}\",\"start\": {\"dateTime\": \"{{.Get \"start\" }}\",\"timeZone\": \"{{.Get \"timezone\" }}\"},\"end\": {\"dateTime\": \"{{.Get \"end\" }}\",\"timeZone\": \"{{.Get \"timezone\" }}\"},\"attendees\": [{\"email\": \"{{.Get \"email\" }}\"}]}"
-		endpoint: "https://us-central1-stepzen-web-staging.cloudfunctions.net/googleCalendarMutation/?url=https://www.googleapis.com/calendar/v3/calendars/$calendar/events"
+		endpoint: "https://us-central1-stepzen-web-staging.cloudfunctions.net/googleCalendarMutation/?url=https://www.googleapis.com/calendar/v3/calendars/$calendar/events&apikey=$apikey"
 		configuration: "google_calendar"
 		)
 }
@@ -34,21 +27,18 @@ type Query {
             setters: []
             resultroot: ""
             endpoint: 
-            "https://www.googleapis.com/calendar/v3/calendars/sam%40stepzen.com/events/$id"
+            "https://www.googleapis.com/calendar/v3/calendars/$calendar/events/$id"
             configuration: "google_calendar")
 }
 
 
-
+# Sample Data for Query
 # createMeeting(
-#     calendar: "sam%40stepzen.com"
 #     description: "A chance to hear more about Googles developer products."
 #     email: "sam@stepzen.com"
 #     end: "2015-05-28T17:00:00-07:00"
-#     location: "800 Howard St., San Francisco, CA 94103"
-#     method: "{\"method\": \"popup\", \"minutes\": 10}"
-#     rule: "RRULE:FREQ=DAILY;COUNT=2"
-#     summary: "Testing Sam Calendar Event Post"
+#     location: "800 Howard St. San Francisco, CA 94103"
+#     summary: "Testing Calendar Event Post"
 #     timezone: "America/Los_Angeles"
 #     start: "2015-05-28T09:00:00-07:00"
 #   ) {
