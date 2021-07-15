@@ -1,0 +1,6 @@
+configurationset:
+  - configuration:
+      name: google_calendar
+  - configuration:
+      name: fauna_config
+      Authorization: Basic 
