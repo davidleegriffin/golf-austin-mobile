@@ -24,6 +24,7 @@ const {
 } = useQuery(GET_GOLF);
 
 const golfCourses = data?.golf;
+// console.log('data', data);
 // console.log('golfCourses', golfCourses);
 
 if (loading) return (

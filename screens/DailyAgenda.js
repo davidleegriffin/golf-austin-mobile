@@ -34,13 +34,13 @@ function DailyAgenda({route, navigation}) {
         // console.log('tomorrow', alteredDate);
         calDates[`${alteredDate}`] = [];
     }
-    console.log('calDates', calDates);
+    // console.log('calDates', calDates);
 
     const marker = route.params.marker;
     // console.log('marker', marker);
 
     const renderItem = (item) => {
-        console.log('item', item.name);
+        // console.log('item', item.name);
         return (
         <>
             <View>

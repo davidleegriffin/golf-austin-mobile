@@ -35,8 +35,8 @@ const LoginScreen = ({ navigation }) => {
         // console.log("LoginScreen.js 6 | loggin in");
         try {
         const { type, accessToken, user } = await Google.logInAsync({
-            iosClientId: `{{iosClientId}}`,
-            androidClientId: `{{androidClientId}}`,
+            iosClientId: `747145895419-t2kvroidqb8r2fcf0e8uf7no74khr4m9.apps.googleusercontent.com`,
+            androidClientId: `747145895419-t4vq6rbo2tkang7vabvf5dqgtlqhrv2s.apps.googleusercontent.com`,
         });
 
         if (type === "success") {
@@ -45,8 +45,8 @@ const LoginScreen = ({ navigation }) => {
             setAccessToken(accessToken);
             // console.log("accessToken", accessToken);
             console.log("LoginScreen.js 17 | success, navigating to profile");
-            console.log('user', user)
-            createUser({variables: {name: user.name, email: user.email,  familyName: user.familyName, givenName: user.givenName,  id: user.id, photoUrl: user.photoUrl}});
+            // console.log('user', user)
+            // createUser({variables: {name: user.name, email: user.email,  familyName: user.familyName, givenName: user.givenName,  id: user.id, photoUrl: user.photoUrl}});
             navigation.navigate("Home", { user, accessToken });
 
         }
@@ -57,8 +57,8 @@ const LoginScreen = ({ navigation }) => {
 
     const signOutAsync = async () => {
         const config = {
-            iosClientId: `{{iosClientId}}`,
-            androidClientId: `{{androidClientId}}`,
+            iosClientId: `747145895419-t2kvroidqb8r2fcf0e8uf7no74khr4m9.apps.googleusercontent.com`,
+            androidClientId: `747145895419-t4vq6rbo2tkang7vabvf5dqgtlqhrv2s.apps.googleusercontent.com`,
         };
 
         await Google.logOutAsync({ accessToken, ...config });
