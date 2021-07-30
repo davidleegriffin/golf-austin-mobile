@@ -44,5 +44,5 @@ expo start
 
 Download the expo App on your phone and scan the QR code or open it in your IOS simulator.
 
-DEMO EXAMPLE
+
 ![Demo Example](./golf-austin-mobile-demo.gif)
